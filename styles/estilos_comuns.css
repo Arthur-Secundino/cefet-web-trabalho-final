@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo_cabecalho {
+    width: 332px;
+    height: 332px;
+}
+
+button {
+    background-color: black;
+    color: white;
+}
