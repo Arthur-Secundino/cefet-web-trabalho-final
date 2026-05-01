@@ -1,14 +1,63 @@
-header {
-    display: flex;
-    justify-content: space-between;
+* {
+    margin: 0;
 }
 
-.logo_cabecalho {
-    width: 332px;
-    height: 332px;
+body {
+    font-family: "Inter";
+    margin: 0px 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-cabecalho {
+    transform: scale(0.25, 0.25);
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+li {
+    list-style-type: none;
+    list-style-image: none;
 }
 
 button {
     background-color: black;
     color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+main {
+    background-color: #00C2C2;
+    margin: 10px 0;
+}
+
+.lista-cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.opcoes_footer {
+    display: grid;
+    
 }
