@@ -1,3 +1,13 @@
+.botoes-landing-page {
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+}
+
+#botao_logon {
+    margin-right: 30px;
+}
+
 #prateleira1 {
     width: 1280px;
     height: auto;
@@ -13,4 +23,9 @@
 
 #botao-criar-prateleira {
     margin: 20px 0;
+}
+
+.lista-depoimentos {
+    display: flex;
+    justify-content: space-between;
 }
