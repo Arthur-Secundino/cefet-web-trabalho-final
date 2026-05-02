@@ -48,6 +48,8 @@ button {
     margin-right: 30px;
 }
 
+
+
 main {
     background-color: #00C2C2;
     padding: 10px 20px;
@@ -62,15 +64,14 @@ main {
 
 }
 
-#prateleira1 {
-    width: 1280px;
-    height: auto;
+h1, h2 {
+    margin: 10px 0;
 }
 
-#prateleira2 {
-    width: 405px;
-    height: auto;
+p {
+    margin: 5px 0;
 }
+
 
 footer {
     display: flex;
@@ -82,7 +83,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(1fr, 3);
     grid-template-rows: repeat(1fr, 4);
-    gap: 20px;
+    column-gap: 30px;
+    row-gap: 5px;
 }
 
 .cabecalho1 {
