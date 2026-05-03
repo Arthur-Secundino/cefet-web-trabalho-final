@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog</title>
         <link rel="stylesheet" href="../styles/estilos_comuns.css">
+        <link rel="stylesheet" href="../styles/busca.css">
+        <script type="module" src="../script/busca.js" defer></script>
     </head>
     <body>
         <header>
@@ -33,46 +35,45 @@
             <input type="search" value="Digite o nome de um livro ou usuário">
             <p>Filtrar busca de livros por:</p>
             <div>
-                <label for="genero">Gênero:</label>
-                <input type="text" id="genero">
-
-                <label for="nota-minima">Nota mínima</label>
-                <input type="text" id="nota-minima">
+                <label for="genero">Gênero: <input type="text" id="genero"></label>
+                <label for="nota-minima">Nota mínima: <input type="text" id="nota-minima"></label>  
             </div>
-            <div>
-                <p>Resultados obtidos</p>
-                
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição do livro</p>
-                </article>
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição livro</p>
-                </article>
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição do livro</p>
-                </article>
 
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição do livro</p>
-                </article>
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição do livro</p>
-                </article>
-                <article class="card">
-                    <img src="" alt="Capa de um livro">
-                    <p>Título do livro</p>
-                    <p>Descrição do livro</p>
-                </article>
+            <div id="resultados-busca">
+                <p>Resultados obtidos</p>
+                <div id="lista-resultados" class="lista-cards">
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição do livro</p>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição livro</p>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição do livro</p>
+                    </article>
+    
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição do livro</p>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição do livro</p>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="Capa de um livro">
+                        <p>Título do livro</p>
+                        <p>Descrição do livro</p>
+                    </article>
+                </div>
             </div>
         </main>
         <footer>

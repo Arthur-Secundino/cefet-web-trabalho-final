@@ -1,0 +1,14 @@
+input[type="search"] {
+    border-radius: 40px;
+    width: 400px;
+    height: 40px;
+    margin: 30px 0;
+}
+
+#resultados-busca {
+    margin: 30px 0 0 0;
+}
+
+label {
+    margin: 20px 30px 0 0;
+}
