@@ -6,6 +6,8 @@
 body {
     font-family: "Inter";
     min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 header {
@@ -17,7 +19,7 @@ header {
 
 .logo {
     width: 200px;
-    height: auto;
+    height: 72.36px;
 }
 
 nav {
