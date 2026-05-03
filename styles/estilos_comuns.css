@@ -46,7 +46,7 @@ a {
     font-size: 25px;
 }
 
-button {
+button, .botao_sair {
     background-color: black;
     color: white;
     border-radius: 5px;
