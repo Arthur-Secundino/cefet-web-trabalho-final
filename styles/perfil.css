@@ -1,0 +1,22 @@
+#dados_iniciais_perfil {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+#dados_iniciais_perfil > div {
+    width: 1000px;
+}
+
+#estatisticas_usuario {
+    background-color: #FF0000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 55%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 0 30px 0;
+}
