@@ -1,0 +1,10 @@
+#menu-principal-prateleira {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.menu-prateleira-especifica {
+    display: flex;
+    justify-content: space-between;
+}

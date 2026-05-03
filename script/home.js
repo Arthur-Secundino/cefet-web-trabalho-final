@@ -1,4 +1,4 @@
-import { livrosEmAltaNaComunidade, prateleirasPraSeInsipirar, reviewsRecentes } from "./dados.js";
+import { livrosEmAltaNaComunidade, prateleirasPraSeInsipirar, reviewsRecentes } from "./dados_home.js";
 
 const listaLivrosEmAltaEl = document.querySelector("#livros_em_alta");
 listaLivrosEmAltaEl.innerHTML = "";
@@ -31,7 +31,7 @@ reviewsRecentes.forEach(review => {
                                             <article class="card card-interno">
                                                 <img src="${review.livro.capa}" alt="Capa do livro ${review.livro.titulo}">
                                                 <p>${review.livro.titulo}</p>
-                                                <p>Nota: ${review.livro.nota}</p>
+                                                <p>${review.livro.nota}</p>
                                             </article>
                                             <div class="dados-usuario">
                                                 <img src="${review.usuario.avatar}" alt="Avatar do usuário ${review.usuario.arroba}" class="avatar-usuario">
