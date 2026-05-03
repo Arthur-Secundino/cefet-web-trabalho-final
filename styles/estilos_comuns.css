@@ -75,12 +75,12 @@ main {
 
 h1 {
     font-weight: bold;
-    font-size: 64;
+    font-size: 4rem;
 }
 
 h2 {
     font-weight: 600;
-    font-size: 48;
+    font-size: 3rem;
 }
 
 p {
@@ -91,7 +91,8 @@ p {
     background-color: white;
     color: black;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
+    margin: 15px 0 20px 0;
 }
 
 .review {
@@ -110,6 +111,7 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin: 15px 0;
 }
 
 .avatar-usuario {
