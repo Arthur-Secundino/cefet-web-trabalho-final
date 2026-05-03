@@ -1,4 +1,4 @@
-const livrosEmAltaNaComunidade = [
+export const livrosEmAltaNaComunidade = [
     {
         capa: "../imgs/crime_castigo.png",
         titulo: "Crime e Castigo",
@@ -16,7 +16,7 @@ const livrosEmAltaNaComunidade = [
     }
 ];
 
-const prateleirasPraSeInsipirar = [
+export const prateleirasPraSeInsipirar = [
     {
         imagem: "../imgs/terror_classico.png",
         nome: "Terror Clássico",
@@ -29,7 +29,7 @@ const prateleirasPraSeInsipirar = [
     }
 ];
 
-const reviewsRecentes = [
+export const reviewsRecentes = [
     {
         titulo: "Definitivamente um livro",
         livro: {
