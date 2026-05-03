@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog</title>
         <link rel="stylesheet" href="../styles/estilos_comuns.css">
+        <link rel="stylesheet" href="../styles/livro.css">
     </head>
     <body>
         <header>
@@ -29,8 +30,9 @@
                 </ul>
             </nav>
         </header>
+
         <main>
-            <div>
+            <div id="dados-livro">
                 <img src="" alt="Capa do livro">
                 <div>
                     <h3>Título do livro</h3>
@@ -50,18 +52,27 @@
 
             <h3>Avaliações de outros usuários</h3>
             <div>
-                <img src="" alt="Avatar do usuário">
-                <p>Nome do usuário</p>
-                <p>Arroba do usuário</p>
+                <div class="dados-usuario">
+                    <img src="" alt="Avatar do usuário" class="avatar-usuario">
+                    <div>
+                        <p>Nome do usuário</p>
+                        <p>Arroba do usuário</p>
+                    </div>
+                </div>
                 <p>Review do usuário</p>
             </div>
             <div>
-                <img src="" alt="Avatar do usuário">
-                <p>Nome do usuário</p>
-                <p>Arroba do usuário</p>
+                <div class="dados-usuario">
+                    <img src="" alt="Avatar do usuário" class="avatar-usuario">
+                    <div>
+                        <p>Nome do usuário</p>
+                        <p>Arroba do usuário</p>
+                    </div>
+                </div>
                 <p>Review do usuário</p>
             </div>
         </main>
+
         <footer>
             <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="opcoes-footer">
