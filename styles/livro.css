@@ -1,4 +1,18 @@
 #dados-livro {
     display: flex;
     justify-content: space-evenly;
+    margin: 30px 0;
+}
+
+#lista-avaliacoes {
+    margin: 10px 0 30px 0;
+}
+
+#sua-avaliacao {
+    margin: 50px 0 0 0;
+}
+
+#comentario-usuario {
+    min-width: 400px;
+    min-height: 100px;
 }
