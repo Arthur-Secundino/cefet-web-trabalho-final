@@ -1,0 +1,8 @@
+.limita-largura {
+    max-width: 600px;
+}
+
+.centraliza-imagem {
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -10,15 +10,15 @@ const listaReviewsRecentesEl = document.querySelector("#reviews_recentes");
 listaReviewsRecentesEl.innerHTML = "";
 
 livrosEmAltaNaComunidade.forEach(livro => {
-    listaLivrosEmAltaEl.innerHTML += `<article class="card">
-                                        <img src="${livro.capa}" alt="Capa do livro ${livro.titulo}">
+    listaLivrosEmAltaEl.innerHTML += `<article class="card limita-largura">
+                                        <img src="${livro.capa}" alt="Capa do livro ${livro.titulo}" class="centraliza-imagem">
                                         <p>${livro.titulo}</p>
                                         <p>${livro.descricao}</p>
                                       </article>`
 });
 
 prateleirasPraSeInsipirar.forEach(prateleira => {
-    listaPrateleirasEmAltaEl.innerHTML += `<article class="card">
+    listaPrateleirasEmAltaEl.innerHTML += `<article class="card limita-largura">
                                              <img src="${prateleira.imagem}" alt="Imagem representativa da prateleira ${prateleira.nome}">
                                              <p>${prateleira.nome}</p>
                                              <p>${prateleira.descricao}</p>
