@@ -6,14 +6,45 @@
         <title>ShelfLog</title>
         <link rel="stylesheet" href="./styles/estilos_comuns.css">
         <link rel="stylesheet" href="./styles/landing_page.css">
+        <link rel="stylesheet" href="./styles/modais.css">
+        <script src="./script/modais.js" defer></script>
     </head>
     <body>
         <header>
             <img src="./imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="botoes-landing-page">
-                <button>Criar conta</button>
-                <button id="botao_logon">Já tem conta? Entrar</button>
+                <button id="botao_criar_conta">Criar conta</button>
+                <button id="botao_login">Já tem conta? Entrar</button>
             </div>
+
+            <dialog id="criar_conta">
+                <h2>Crie sua conta</h2>
+
+                <div class="modal-coluna">
+                    <label for="nome">Nome do usuário: <input name="nome" type="text"></label>
+                    <label for="e-mail">E-mail: <input name="e-mail" type="text"></label>
+                    <label for="senha">Senha: <input name="senha" type="text"></label>
+
+                    <div>
+                        <button id="enviar_dados_cadastro">Enviar</button>
+                        <button id="cancelar_cadastro">Cancelar</button>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="logar">
+                <h2>Faça login</h2>
+
+                <div class="modal-coluna">
+                    <label for="e-mail">E-mail: <input name="e-mail" type="text"></label>
+                    <label for="senha">Senha: <input name="senha" type="text"></label>
+
+                    <div>
+                        <button id="enviar_dados_login">Enviar</button>
+                        <button id="cancelar_login">Cancelar</button>
+                    </div>
+                </div>
+            </dialog>
         </header>
         <main>
             <h1>Sua estante digital, do seu jeito</h1>
