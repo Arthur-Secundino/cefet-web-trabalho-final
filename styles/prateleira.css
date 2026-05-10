@@ -1,10 +1,11 @@
 #menu-principal-prateleira {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 20px 100px;
 }
 
 .menu-prateleira-especifica {
     display: flex;
     justify-content: space-between;
+    margin: 20px 100px;
 }

@@ -1,6 +1,6 @@
 #dados_iniciais_perfil {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 30px 0;
 }
 
