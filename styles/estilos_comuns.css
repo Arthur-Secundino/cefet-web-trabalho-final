@@ -121,6 +121,7 @@ p {
     left: 50%;
     transform: translateX(-50%);
     display: inline-block;
+    font-size: 1.5em;
 }
 
 .dados-usuario {

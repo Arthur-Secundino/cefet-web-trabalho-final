@@ -29,7 +29,7 @@ reviewsRecentes.forEach(review => {
     listaReviewsRecentesEl.innerHTML += `<article class="review card">
                                             <h4 class="titulo">${review.titulo}</h4>
                                             <article class="card card-interno">
-                                                <img src="${review.livro.capa}" alt="Capa do livro ${review.livro.titulo}">
+                                                <img src="${review.livro.capa}" alt="Capa do livro ${review.livro.titulo}" class="centraliza-imagem">
                                                 <p>${review.livro.titulo}</p>
                                                 <p>${review.livro.nota}</p>
                                             </article>
