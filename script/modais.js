@@ -26,15 +26,15 @@ botaoLoginEl.addEventListener("click", () => {
 });
 
 botaoEnviarDadosCadastroEl.addEventListener("click", () => {
-    if(inputNomeUsuarioCadastroEl.value !== "" && inputEmailCadastroEl.value !== "" && inputSenhaCadastroEl.value !== ""){
+//    if(inputNomeUsuarioCadastroEl.value !== "" && inputEmailCadastroEl.value !== "" && inputSenhaCadastroEl.value !== ""){
         window.location.href = "./pages/home.html";
-    }
+//    }
 });
 
 botaoEnviarDadosLoginEl.addEventListener("click", () => {
-    if(inputEmailLoginEl.value !== "" && inputSenhaLoginEl.value !== ""){
+//    if(inputEmailLoginEl.value !== "" && inputSenhaLoginEl.value !== ""){
         window.location.href = "./pages/home.html";
-    }
+//    }
 });
 
 botaoCancelarCadastroEl.addEventListener("click", () => {
