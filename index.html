@@ -21,9 +21,9 @@
                 <h2>Crie sua conta</h2>
 
                 <div class="modal-coluna">
-                    <label for="nome">Nome do usuário: <input name="nome" type="text"></label>
-                    <label for="e-mail">E-mail: <input name="e-mail" type="text"></label>
-                    <label for="senha">Senha: <input name="senha" type="text"></label>
+                    <label for="nome">Nome do usuário: <input id="nome_usuario_cadastro" name="nome" type="text" required></label>
+                    <label for="email">Email: <input id="email_cadastro" name="email" type="text" required></label>
+                    <label for="senha">Senha: <input id="senha_cadastro" name="senha" type="text" required></label>
 
                     <div>
                         <button id="enviar_dados_cadastro">Enviar</button>
@@ -36,8 +36,8 @@
                 <h2>Faça login</h2>
 
                 <div class="modal-coluna">
-                    <label for="e-mail">E-mail: <input name="e-mail" type="text"></label>
-                    <label for="senha">Senha: <input name="senha" type="text"></label>
+                    <label for="email">Email: <input id="email_login" name="email" type="text" required></label>
+                    <label for="senha">Senha: <input id="senha_login" name="senha" type="text" required></label>
 
                     <div>
                         <button id="enviar_dados_login">Enviar</button>
