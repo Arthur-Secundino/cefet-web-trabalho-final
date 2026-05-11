@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ShelfLog</title>
+        <title>ShelfLog — Sua estante digital</title>
         <link rel="stylesheet" href="./styles/estilos_comuns.css">
         <link rel="stylesheet" href="./styles/landing_page.css">
         <link rel="stylesheet" href="./styles/modais.css">
@@ -13,21 +13,27 @@
         <header>
             <img src="./imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="botoes-landing-page">
-                <button id="botao_criar_conta">Criar conta</button>
                 <button id="botao_login">Já tem conta? Entrar</button>
+                <button id="botao_criar_conta">Criar conta</button>
             </div>
 
             <dialog id="criar_conta">
                 <h2>Crie sua conta</h2>
 
                 <div class="modal-coluna">
-                    <label for="nome">Nome do usuário: <input id="nome_usuario_cadastro" name="nome" type="text" required></label>
-                    <label for="email">Email: <input id="email_cadastro" name="email" type="text" required></label>
-                    <label for="senha">Senha: <input id="senha_cadastro" name="senha" type="text" required></label>
+                    <label for="nome_usuario_cadastro">Nome do usuário
+                        <input id="nome_usuario_cadastro" name="nome" type="text" placeholder="Como podemos te chamar?" required>
+                    </label>
+                    <label for="email_cadastro">Email
+                        <input id="email_cadastro" name="email" type="email" placeholder="voce@exemplo.com" required>
+                    </label>
+                    <label for="senha_cadastro">Senha
+                        <input id="senha_cadastro" name="senha" type="password" placeholder="••••••••" required>
+                    </label>
 
                     <div>
-                        <button id="enviar_dados_cadastro">Enviar</button>
-                        <button id="cancelar_cadastro">Cancelar</button>
+                        <button id="cancelar_cadastro" type="button">Cancelar</button>
+                        <button id="enviar_dados_cadastro" type="button">Criar conta</button>
                     </div>
                 </div>
             </dialog>
@@ -36,23 +42,32 @@
                 <h2>Faça login</h2>
 
                 <div class="modal-coluna">
-                    <label for="email">Email: <input id="email_login" name="email" type="text" required></label>
-                    <label for="senha">Senha: <input id="senha_login" name="senha" type="text" required></label>
+                    <label for="email_login">Email
+                        <input id="email_login" name="email" type="email" placeholder="voce@exemplo.com" required>
+                    </label>
+                    <label for="senha_login">Senha
+                        <input id="senha_login" name="senha" type="password" placeholder="••••••••" required>
+                    </label>
 
                     <div>
-                        <button id="enviar_dados_login">Enviar</button>
-                        <button id="cancelar_login">Cancelar</button>
+                        <button id="cancelar_login" type="button">Cancelar</button>
+                        <button id="enviar_dados_login" type="button">Entrar</button>
                     </div>
                 </div>
             </dialog>
         </header>
+
         <main>
-            <h1>Sua estante digital, do seu jeito</h1>
-            <p>
-                Organize seus livros em prateleiras temáticas, descubra o que outros leitores estão lendo e compartilhe seu perfil literário com o mundo.
-            </p>
-            <button id="botao-criar-prateleira">Crie sua prateleira</button>
-            <img src="./imgs/prateleira1.png" alt="Imagem de uma prateleira de livros" id="prateleira1">
+            <section class="hero">
+                <h1>Sua estante digital, <span class="destaque">do seu jeito</span></h1>
+                <p class="hero-sub">
+                    Organize seus livros em prateleiras temáticas, descubra o que outros leitores estão lendo e compartilhe seu perfil literário com o mundo.
+                </p>
+                <button id="botao-criar-prateleira">Crie sua prateleira</button>
+                <div class="hero-imagem-wrap">
+                    <img src="./imgs/prateleira1.png" alt="Imagem de uma prateleira de livros" id="prateleira1">
+                </div>
+            </section>
 
             <h2 class="margem-para-cima">Como funciona?</h2>
             <div class="lista-cards">
