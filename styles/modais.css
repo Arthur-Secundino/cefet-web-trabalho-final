@@ -1,30 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+/* ============================================================
+   MODAIS — Diálogos de cadastro e login
+   ============================================================ */
 
 dialog {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px 20px;
-    position: relative;
+    background: var(--paper);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    width: min(440px, calc(100% - 32px));
+    box-shadow: var(--shadow-lg);
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    overflow: hidden;
+    /* faixa decorativa dourada no topo */
+}
+
+dialog::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--burgundy), var(--gold));
+}
+
+/* Animação de entrada do dialog */
+dialog[open] {
+    animation: dialog-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dialog-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(31, 46, 37, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+dialog h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.85rem;
+    color: var(--ink);
+    text-align: center;
+    margin: 28px 32px 12px;
+    padding: 0;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72;
+}
+
+dialog h2::after {
+    content: "";
+    display: block;
+    position: static;
+    left: auto;
+    bottom: auto;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 12px auto 0;
+    border-radius: 1px;
 }
 
 .modal-coluna {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    padding: 16px 32px 32px;
 }
 
-label {
-    margin: 10px;
-    font-size: 1.5em;
-    font-family: "Source Serif 4";
+dialog label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-input {
-    border: 3px solid black;
+dialog input {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--cream);
+    text-transform: none;
+    letter-spacing: normal;
+    transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease),
+                background 0.25s var(--ease);
+}
+
+dialog input:focus {
+    border-color: var(--gold);
+    background: var(--paper);
+    box-shadow: 0 0 0 3px rgba(184, 137, 62, 0.18);
+}
+
+/* Container de botões do modal */
+.modal-coluna > div {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.modal-coluna button {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+}
+
+/* Botão Cancelar — visual secundário */
+#cancelar_cadastro, #cancelar_login {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    order: -1;
+}
+
+#cancelar_cadastro:hover, #cancelar_login:hover {
+    background: var(--cream-warm);
+    border-color: var(--ink-mute);
+    color: var(--ink);
 }

@@ -5,7 +5,205 @@
 }
 
 #lista-avaliacoes {
-    margin: 10px 0 30px 0;
+    margin: 10px 0 30px 0;/* ============================================================
+   LIVRO — Página de detalhe do livro
+   ============================================================ */
+
+#dados-livro {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: 48px;
+    margin: 16px 0 56px;
+    align-items: start;
+}
+
+#dados-livro > img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 40px rgba(31, 46, 37, 0.25),
+                0 1px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+}
+
+#dados-livro > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#dados-livro h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 96;
+}
+
+#dados-livro > div > p:nth-of-type(1) {
+    /* Autor */
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold-deep);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 24;
+}
+
+#dados-livro > div > p:nth-of-type(2) {
+    /* Sinopse */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+#dados-livro > div > p:nth-of-type(3) {
+    /* Status */
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--paper);
+    background: var(--ink-soft);
+    padding: 6px 14px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+#sua-avaliacao {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-soft);
+    font-size: 1.5rem;
+}
+
+/* Nota dada (4.9) */
+#dados-livro > div > p:nth-of-type(4) {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: var(--burgundy);
+    margin: 8px 0;
+    font-variation-settings: "opsz" 96;
+}
+
+#dados-livro > div > p:nth-of-type(4)::before {
+    content: "★ ";
+    color: var(--gold);
+}
+
+#comentario-usuario {
+    width: 100%;
+    min-width: 100%;
+    min-height: 130px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    resize: vertical;
+    transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+#comentario-usuario:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184, 137, 62, 0.18);
+    outline: none;
+}
+
+/* ============================================================
+   Avaliações de outros usuários
+   ============================================================ */
+main > h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: var(--ink);
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-soft);
+    font-variation-settings: "opsz" 48;
+    position: relative;
+}
+
+main > h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+}
+
+#lista-avaliacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px 0 40px;
+}
+
+#lista-avaliacoes > div {
+    background: var(--paper);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+#lista-avaliacoes > div:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+#lista-avaliacoes > div .dados-usuario {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    margin-bottom: 12px;
+}
+
+/* Nota da avaliação (penúltimo p) */
+#lista-avaliacoes > div > p:nth-of-type(1) {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--burgundy);
+    margin: 6px 0;
+    font-variation-settings: "opsz" 24;
+}
+
+#lista-avaliacoes > div > p:nth-of-type(1)::before {
+    content: "★ ";
+    color: var(--gold);
+}
+
+/* Comentário (último p) */
+#lista-avaliacoes > div > p:nth-of-type(2) {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-variation-settings: "opsz" 18;
+}
+
+@media (max-width: 760px) {
+    #dados-livro { grid-template-columns: 1fr; gap: 24px; }
+    #dados-livro > img { max-width: 240px; }
+}
+
 }
 
 #sua-avaliacao {

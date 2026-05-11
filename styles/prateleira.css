@@ -1,11 +1,168 @@
+/* ============================================================
+   PRATELEIRA — Suas prateleiras + livros dentro de cada uma
+   ============================================================ */
+
 #menu-principal-prateleira {
     display: flex;
     justify-content: space-between;
-    margin: 20px 100px;
+    align-items: center;
+    margin: 16px 0 40px;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
+#menu-principal-prateleira h1 {
+    margin-bottom: 0;
+}
+
+#menu-principal-prateleira button {
+    font-size: 1rem;
+    padding: 12px 26px;
+}
+
+#menu-principal-prateleira button::before {
+    content: "+ ";
+    font-weight: 700;
+    color: inherit;
+}
+
+/* ============================================================
+   Bloco de cada prateleira (gerado por JS)
+   ============================================================ */
+#lista-prateleiras > div {
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin: 0 0 40px;
+    overflow: hidden;
+    transition: box-shadow 0.4s var(--ease);
+}
+
+#lista-prateleiras > div:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Header de cada prateleira (título + botão "Adicionar livro") */
 .menu-prateleira-especifica {
     display: flex;
     justify-content: space-between;
-    margin: 20px 100px;
+    align-items: center;
+    padding: 28px 32px 20px;
+    margin: 0;
+    border-bottom: 1px solid var(--border-soft);
+    background: linear-gradient(180deg, var(--cream-warm), transparent);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.menu-prateleira-especifica > div > p:first-child {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+    font-variation-settings: "opsz" 48;
+}
+
+.menu-prateleira-especifica > div > p:last-child {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    margin-top: 4px;
+    font-variation-settings: "opsz" 18;
+}
+
+.menu-prateleira-especifica button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+}
+
+.menu-prateleira-especifica button::before {
+    content: "+ ";
+    font-weight: 700;
+}
+
+/* Container interno com os livros */
+#lista-prateleiras > div > div:last-child {
+    padding: 24px 32px 32px;
+}
+
+/* Grade de livros dentro da prateleira */
+#lista-prateleiras .lista-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    margin: 0;
+}
+
+/* Card de livro na prateleira */
+#lista-prateleiras .card.card-com-fundo {
+    background: var(--cream);
+    padding: 18px;
+    border: 1px solid var(--border-soft);
+    text-align: center;
+    align-items: center;
+}
+
+#lista-prateleiras .card.card-com-fundo img {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 18px rgba(31, 46, 37, 0.22);
+    transition: transform 0.4s var(--ease);
+}
+
+#lista-prateleiras .card.card-com-fundo:hover img {
+    transform: translateY(-4px) rotate(-1deg);
+}
+
+/* Status (primeiro <p> após img) */
+#lista-prateleiras .card.card-com-fundo > p:nth-of-type(1) {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--cream-warm);
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: inline-block;
+    align-self: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* Título do livro */
+#lista-prateleiras .card.card-com-fundo > p:nth-of-type(2) {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 6px 0 4px;
+    line-height: 1.25;
+    font-variation-settings: "opsz" 18;
+}
+
+/* Nota */
+#lista-prateleiras .card.card-com-fundo > p:nth-of-type(3) {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--burgundy);
+    margin-top: auto;
+    font-variation-settings: "opsz" 24;
+}
+
+#lista-prateleiras .card.card-com-fundo > p:nth-of-type(3)::before {
+    content: "★ ";
+    color: var(--gold);
+}
+
+@media (max-width: 600px) {
+    .menu-prateleira-especifica { padding: 20px 22px 16px; }
+    #lista-prateleiras > div > div:last-child { padding: 18px 22px 24px; }
 }

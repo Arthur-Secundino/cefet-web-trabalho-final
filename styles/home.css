@@ -1,10 +1,67 @@
+/* ============================================================
+   HOME — feed interno (livros em alta, prateleiras, reviews)
+   ============================================================ */
+
+/* JS gera cards com classe .limita-largura */
 .limita-largura {
-    max-width: 600px;
+    max-width: 100%;
 }
 
+/* JS injeta <img class="centraliza-imagem"> */
 .centraliza-imagem {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-block;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 20px rgba(31, 46, 37, 0.18),
+                0 1px 0 rgba(0, 0, 0, 0.05);
+    transition: transform 0.5s var(--ease);
+}
+
+.card:hover .centraliza-imagem { transform: translateY(-3px) rotate(-1deg); }
+
+/* Capa de livro com proporção mais "livro" */
+#livros_em_alta .centraliza-imagem,
+#reviews_recentes .centraliza-imagem {
+    max-width: 160px;
+}
+
+/* Prateleiras em alta — imagens mais largas */
+#prateleiras_em_alta .centraliza-imagem {
+    max-width: 100%;
+    width: 100%;
+    border-radius: var(--radius);
+}
+
+/* Review card — nota destacada como "estrela" */
+.review .card-interno {
+    background: var(--cream);
+    text-align: center;
+}
+
+.review .card-interno > p:last-child {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--burgundy);
+    font-variation-settings: "opsz" 36;
+}
+
+.review .card-interno > p:last-child::before {
+    content: "★ ";
+    color: var(--gold);
+}
+
+/* Texto da review (último <p> do article.review) */
+.review > p:last-child {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 12px;
+    font-variation-settings: "opsz" 18;
+    padding-top: 8px;
 }
