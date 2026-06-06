@@ -1,67 +1,48 @@
-/* ============================================================
-   HOME — feed interno (livros em alta, prateleiras, reviews)
-   ============================================================ */
+/* home - feed interno */
 
-/* JS gera cards com classe .limita-largura */
-.limita-largura {
-    max-width: 100%;
-}
-
-/* JS injeta <img class="centraliza-imagem"> */
 .centraliza-imagem {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-width: 200px;
     height: auto;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 8px 20px rgba(31, 46, 37, 0.18),
-                0 1px 0 rgba(0, 0, 0, 0.05);
-    transition: transform 0.5s var(--ease);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.card:hover .centraliza-imagem { transform: translateY(-3px) rotate(-1deg); }
-
-/* Capa de livro com proporção mais "livro" */
 #livros_em_alta .centraliza-imagem,
 #reviews_recentes .centraliza-imagem {
     max-width: 160px;
 }
 
-/* Prateleiras em alta — imagens mais largas */
 #prateleiras_em_alta .centraliza-imagem {
     max-width: 100%;
     width: 100%;
-    border-radius: var(--radius);
+    border-radius: 8px;
 }
 
-/* Review card — nota destacada como "estrela" */
+/* nota na review */
 .review .card-interno {
-    background: var(--cream);
+    background: var(--cinza-fundo);
     text-align: center;
 }
 
 .review .card-interno > p:last-child {
-    font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.5rem;
-    color: var(--burgundy);
-    font-variation-settings: "opsz" 36;
+    font-size: 1.4rem;
+    color: var(--vermelho);
 }
 
 .review .card-interno > p:last-child::before {
     content: "★ ";
-    color: var(--gold);
+    color: var(--teal);
 }
 
-/* Texto da review (último <p> do article.review) */
+/* texto da review */
 .review > p:last-child {
-    font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.55;
-    margin-top: 12px;
-    font-variation-settings: "opsz" 18;
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    line-height: 1.5;
+    margin-top: 10px;
     padding-top: 8px;
 }

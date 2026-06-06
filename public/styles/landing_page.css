@@ -1,78 +1,48 @@
-/* ============================================================
-   LANDING PAGE — Hero + Como funciona + Depoimentos
-   ============================================================ */
+/* landing page */
 
-/* Botões do header da landing */
 .botoes-landing-page {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
 }
 
-#botao_login { margin-right: 0; }
-
-/* ============================================================
-   HERO
-   ============================================================ */
+/* hero */
 .hero {
     text-align: left;
-    padding: 64px 0 32px;
-    position: relative;
+    padding: 50px 0 24px;
 }
 
 .hero h1 {
-    font-size: clamp(2.6rem, 6vw, 5rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     max-width: 18ch;
-    margin-bottom: 24px;
-    font-variation-settings: "opsz" 144, "wght" 400;
-}
-
-.hero h1 .destaque {
-    font-style: italic;
-    color: var(--burgundy);
-    font-weight: 500;
-}
-
-.hero h1 .destaque::after {
-    content: ",";
+    margin-bottom: 20px;
 }
 
 .hero-sub {
-    font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-    color: var(--ink-soft);
-    max-width: 56ch;
-    margin-bottom: 36px;
-    line-height: 1.55;
-    font-variation-settings: "opsz" 24;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--cinza-escuro);
+    max-width: 54ch;
+    margin-bottom: 30px;
+    line-height: 1.5;
 }
 
 #botao-criar-prateleira {
-    margin: 0 0 56px;
+    margin: 0 0 48px;
     font-size: 1.05rem;
-    padding: 14px 32px;
+    padding: 12px 28px;
 }
 
-/* Imagem do hero — moldura com efeito */
+/* imagem do hero */
 .hero-imagem-wrap {
-    position: relative;
-    margin: 0 auto 24px;
+    margin: 0 auto 20px;
     max-width: 100%;
-    border-radius: var(--radius-lg);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border);
-}
-
-.hero-imagem-wrap::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(31, 46, 37, 0.10));
-    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    border: 1px solid var(--cinza-borda);
 }
 
 #prateleira1 {
@@ -81,10 +51,8 @@
     display: block;
 }
 
-/* ============================================================
-   SEÇÃO "Como funciona?" — cards
-   ============================================================ */
-.margem-para-cima { margin-top: 64px; }
+/* secao como funciona */
+.margem-para-cima { margin-top: 56px; }
 
 main > .lista-cards .card {
     align-items: flex-start;
@@ -98,38 +66,28 @@ main > .lista-cards .card {
     align-self: center;
 }
 
-/* Card "Como funciona" — primeiro <p> grande, segundo descrição */
 .lista-cards > .card > img + p {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.45rem;
-    color: var(--ink);
-    line-height: 1.2;
-    margin-top: 14px;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--preto);
+    margin-top: 12px;
 }
 
 .lista-cards > .card > p + p {
-    font-family: var(--font-body);
-    font-size: 0.98rem;
-    color: var(--text-mute);
-    font-style: normal;
+    font-size: 0.95rem;
+    color: var(--cinza);
 }
 
-/* ============================================================
-   DEPOIMENTOS
-   ============================================================ */
+/* depoimentos */
 .lista-depoimentos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 24px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-/* ============================================================
-   RESPONSIVO
-   ============================================================ */
 @media (max-width: 900px) {
-    .botoes-landing-page { width: auto; gap: 8px; flex-wrap: wrap; }
-    .hero { padding: 32px 0 16px; }
-    #botao-criar-prateleira { margin-bottom: 32px; }
+    .botoes-landing-page { gap: 8px; flex-wrap: wrap; }
+    .hero { padding: 28px 0 12px; }
+    #botao-criar-prateleira { margin-bottom: 28px; }
 }

@@ -1,29 +1,19 @@
-#dados-livro {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 30px 0;
-}
-
-#lista-avaliacoes {
-    margin: 10px 0 30px 0;/* ============================================================
-   LIVRO — Página de detalhe do livro
-   ============================================================ */
+/* pagina de detalhe do livro */
 
 #dados-livro {
     display: grid;
-    grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: 48px;
-    margin: 16px 0 56px;
+    grid-template-columns: minmax(200px, 280px) 1fr;
+    gap: 40px;
+    margin: 16px 0 48px;
     align-items: start;
 }
 
 #dados-livro > img {
     width: 100%;
     height: auto;
-    border-radius: var(--radius);
-    box-shadow: 0 20px 40px rgba(31, 46, 37, 0.25),
-                0 1px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    border: 1px solid var(--cinza-borda);
 }
 
 #dados-livro > div {
@@ -33,184 +23,134 @@
 }
 
 #dados-livro h3 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 2.4rem;
+    font-size: 2rem;
     line-height: 1.1;
-    color: var(--ink);
-    letter-spacing: -0.02em;
+    color: var(--preto);
     margin-bottom: 4px;
-    font-variation-settings: "opsz" 96;
 }
 
+/* autor */
 #dados-livro > div > p:nth-of-type(1) {
-    /* Autor */
-    font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.2rem;
-    color: var(--gold-deep);
-    margin-bottom: 16px;
-    font-variation-settings: "opsz" 24;
+    font-size: 1.15rem;
+    color: var(--teal-escuro);
+    margin-bottom: 12px;
 }
 
+/* sinopse */
 #dados-livro > div > p:nth-of-type(2) {
-    /* Sinopse */
-    font-family: var(--font-body);
     font-size: 1rem;
-    line-height: 1.65;
-    color: var(--text);
-    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--preto);
+    margin-bottom: 12px;
 }
 
+/* status */
 #dados-livro > div > p:nth-of-type(3) {
-    /* Status */
     display: inline-block;
     align-self: flex-start;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: var(--paper);
-    background: var(--ink-soft);
-    padding: 6px 14px;
+    color: var(--branco);
+    background: var(--cinza-escuro);
+    padding: 5px 12px;
     border-radius: 999px;
-    letter-spacing: 0.03em;
     text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 #sua-avaliacao {
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border-soft);
-    font-size: 1.5rem;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cinza-borda);
+    font-size: 1.4rem;
 }
 
-/* Nota dada (4.9) */
+/* nota */
 #dados-livro > div > p:nth-of-type(4) {
-    font-family: var(--font-display);
     font-weight: 600;
-    font-size: 2.4rem;
-    color: var(--burgundy);
-    margin: 8px 0;
-    font-variation-settings: "opsz" 96;
+    font-size: 2rem;
+    color: var(--vermelho);
+    margin: 6px 0;
 }
 
 #dados-livro > div > p:nth-of-type(4)::before {
     content: "★ ";
-    color: var(--gold);
+    color: var(--teal);
 }
 
 #comentario-usuario {
     width: 100%;
-    min-width: 100%;
-    min-height: 130px;
-    padding: 14px 18px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--paper);
-    font-family: var(--font-body);
+    min-height: 110px;
+    padding: 12px 16px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 6px;
+    background: var(--branco);
+    font-family: "Inter", sans-serif;
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text);
+    line-height: 1.5;
+    color: var(--preto);
     resize: vertical;
-    transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 #comentario-usuario:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(184, 137, 62, 0.18);
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(0, 194, 194, 0.15);
     outline: none;
 }
 
-/* ============================================================
-   Avaliações de outros usuários
-   ============================================================ */
+/* avaliacoes de outros usuarios */
 main > h3 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.7rem;
-    color: var(--ink);
-    margin: 40px 0 20px;
+    font-size: 1.5rem;
+    margin: 36px 0 16px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-soft);
-    font-variation-settings: "opsz" 48;
-    position: relative;
-}
-
-main > h3::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 50px;
-    height: 2px;
-    background: var(--gold);
+    border-bottom: 1px solid var(--cinza-borda);
 }
 
 #lista-avaliacoes {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin: 10px 0 40px;
+    gap: 16px;
+    margin: 8px 0 36px;
 }
 
 #lista-avaliacoes > div {
-    background: var(--paper);
-    padding: 24px 28px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-
-#lista-avaliacoes > div:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    background: var(--branco);
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--cinza-borda);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 #lista-avaliacoes > div .dados-usuario {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
-/* Nota da avaliação (penúltimo p) */
+/* nota da avaliacao */
 #lista-avaliacoes > div > p:nth-of-type(1) {
-    font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.4rem;
-    color: var(--burgundy);
-    margin: 6px 0;
-    font-variation-settings: "opsz" 24;
+    font-size: 1.3rem;
+    color: var(--vermelho);
+    margin: 4px 0;
 }
 
 #lista-avaliacoes > div > p:nth-of-type(1)::before {
     content: "★ ";
-    color: var(--gold);
+    color: var(--teal);
 }
 
-/* Comentário (último p) */
+/* comentario */
 #lista-avaliacoes > div > p:nth-of-type(2) {
-    font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.55;
-    font-variation-settings: "opsz" 18;
+    font-size: 1rem;
+    color: var(--cinza-escuro);
+    line-height: 1.5;
 }
 
 @media (max-width: 760px) {
-    #dados-livro { grid-template-columns: 1fr; gap: 24px; }
-    #dados-livro > img { max-width: 240px; }
-}
-
-}
-
-#sua-avaliacao {
-    margin: 50px 0 0 0;
-}
-
-#comentario-usuario {
-    min-width: 400px;
-    min-height: 100px;
+    #dados-livro { grid-template-columns: 1fr; gap: 20px; }
+    #dados-livro > img { max-width: 220px; }
 }

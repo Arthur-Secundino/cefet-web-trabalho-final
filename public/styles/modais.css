@@ -1,142 +1,92 @@
-/* ============================================================
-   MODAIS — Diálogos de cadastro e login
-   ============================================================ */
+/* modais de login e cadastro */
 
 dialog {
-    background: var(--paper);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    background: var(--branco);
+    color: var(--preto);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
     padding: 0;
-    width: min(440px, calc(100% - 32px));
-    box-shadow: var(--shadow-lg);
+    width: min(420px, calc(100% - 32px));
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
-    /* faixa decorativa dourada no topo */
-}
-
-dialog::before {
-    content: "";
-    display: block;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--burgundy), var(--gold));
-}
-
-/* Animação de entrada do dialog */
-dialog[open] {
-    animation: dialog-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes dialog-in {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -48%) scale(0.96);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
 }
 
 dialog::backdrop {
-    background: rgba(31, 46, 37, 0.45);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.4);
 }
 
 dialog h2 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.85rem;
-    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--preto);
     text-align: center;
-    margin: 28px 32px 12px;
+    margin: 28px 28px 10px;
     padding: 0;
-    letter-spacing: -0.015em;
-    font-variation-settings: "opsz" 72;
-}
-
-dialog h2::after {
-    content: "";
-    display: block;
-    position: static;
-    left: auto;
-    bottom: auto;
-    width: 40px;
-    height: 2px;
-    background: var(--gold);
-    margin: 12px auto 0;
-    border-radius: 1px;
 }
 
 .modal-coluna {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 16px 32px 32px;
+    padding: 12px 28px 28px;
 }
 
 dialog label {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin: 10px 0 0;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
+    gap: 5px;
+    margin: 8px 0 0;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: var(--ink-soft);
-    letter-spacing: 0.04em;
+    color: var(--cinza-escuro);
     text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 dialog input {
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    font-family: var(--font-body);
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: "Inter", sans-serif;
     font-size: 1rem;
-    font-weight: 400;
-    color: var(--text);
-    background: var(--cream);
+    color: var(--preto);
+    background: var(--cinza-fundo);
     text-transform: none;
     letter-spacing: normal;
-    transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease),
-                background 0.25s var(--ease);
 }
 
 dialog input:focus {
-    border-color: var(--gold);
-    background: var(--paper);
-    box-shadow: 0 0 0 3px rgba(184, 137, 62, 0.18);
+    border-color: var(--teal);
+    background: var(--branco);
+    box-shadow: 0 0 0 3px rgba(0, 194, 194, 0.15);
 }
 
-/* Container de botões do modal */
+/* botoes do modal */
 .modal-coluna > div {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
-    margin-top: 22px;
+    margin-top: 18px;
 }
 
 .modal-coluna button {
     flex: 1;
-    padding: 12px 20px;
+    padding: 10px 18px;
     font-size: 0.95rem;
 }
 
-/* Botão Cancelar — visual secundário */
 #cancelar_cadastro, #cancelar_login {
     background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--border);
+    color: var(--preto);
+    border: 1px solid var(--cinza-borda);
     order: -1;
 }
 
 #cancelar_cadastro:hover, #cancelar_login:hover {
-    background: var(--cream-warm);
-    border-color: var(--ink-mute);
-    color: var(--ink);
+    background: var(--cinza-fundo);
+    border-color: var(--cinza-claro);
 }
