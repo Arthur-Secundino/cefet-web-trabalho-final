@@ -40,7 +40,7 @@ router.post("/", async (req, res, next) => {
 
 router.post("/:idPrateleira", async (req, res, next) => {
     try{
-        const livro = await getDadosLivro(req.body.titulo);
+        const livro = await getDadosLivro(null, req.body.titulo);
 
         const novoLivro = {
             titulo: req.body.titulo,
@@ -49,7 +49,7 @@ router.post("/:idPrateleira", async (req, res, next) => {
             nota: livro.nota
         };
 
-        const livroInserido = await insereLivroNaPrateleira(req.params.idPrateleira);
+        const livroInserido = await insereLivroNaPrateleira(req.params.idPrateleira, novoLivro);
         if(livroInserido){
             req.flash("success", "Livro adicionado com sucesso");
         }

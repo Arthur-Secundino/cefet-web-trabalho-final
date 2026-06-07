@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/:idLivro", async (req, res, next) => {
     try{
-        const dadosLivro = await getDadosLivro(req.params.idLivro);
+        const dadosLivro = await getDadosLivro(req.params.idLivro, null);
         res.render("livro", {livro: dadosLivro});
     }
     catch(erro){
