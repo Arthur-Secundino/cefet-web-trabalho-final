@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShelfLog — Home</title>
+        <link rel="stylesheet" href="../public/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="../public/styles/home.css">
+    </head>
+    <body>
+        <header>
+            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="prateleira.html">Prateleiras</a></li>
+                    <li><a href="busca.html">Buscar</a></li>
+                    <li><a href="perfil.html">Perfil público</a></li>
+                    <li><a href="../index.html" class="botao_sair">Sair</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Em alta na comunidade</h1>
+            <p>Os livros que estão movimentando os leitores neste momento.</p>
+            <div id="livros_em_alta" class="lista-cards">
+                {{#each livrosEmAlta}}
+                    <article class="card limita-largura">
+                        <img src="{{capa}}" alt="Capa do livro {{titulo}}" class="centraliza-imagem">
+                        <p>{{titulo}}</p>
+                        <p>{{descricao}}</p>
+                    </article>
+                {{/each}}
+            </div>
+            
+
+            <h2>Prateleiras pra se inspirar</h2>
+            <div id="prateleiras_em_alta" class="lista-cards">
+                {{#each prateleirasEmAlta}}
+                    <article class="card limita-largura">
+                        <img src="{{imagem}}" alt="Imagem representativa da prateleira {{nome}}">
+                        <p>{{nome}}</p>
+                        <p>{{descricao}}</p>
+                    </article>
+                {{/each}}
+            </div>
+            
+
+            <h2>Reviews recentes</h2>
+            <div id="reviews_recentes" class="lista-cards">
+                {{#each reviewsRecentes}}
+                    <article class="review card">
+                        <h4 class="titulo">{{titulo}}</h4>
+                        <article class="card card-interno">
+                            <img src="{{livro.capa}}" alt="Capa do livro {{livro.titulo}}" class="centraliza-imagem">
+                            <p>{{livro.titulo}}</p>
+                            <p>{{livro.nota}}</p>
+                        </article>
+                        <div class="dados-usuario">
+                            <img src="${review.usuario.avatar}" alt="Avatar do usuário ${review.usuario.arroba}" class="avatar-usuario">
+                            <div>
+                                <p>{{usuario.nome}}</p>
+                                <p>{{usuario.arroba}}</p>
+                            </div>
+                        </div>
+                        <p>{{review}}</p>
+                    </article>
+                {{/each}}
+            </div>
+        </main>
+
+        <footer>
+            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <div class="opcoes-footer">
+                <p class="cabecalho1">ShelfLog</p>
+                <p class="opcao11">Sobre nós</p>
+                <p class="opcao12">Como funciona</p>
+                <p class="opcao13">Contato</p>
+
+                <p class="cabecalho2">Explorar</p>
+                <p class="opcao21">Prateleiras populares</p>
+                <p class="opcao22">Reviews recentes</p>
+                <p class="opcao23">Buscar livros</p>
+
+                <p class="cabecalho3">Conta</p>
+                <p class="opcao31">Criar conta</p>
+                <p class="opcao32">Entrar</p>
+                <p class="opcao33">Meu perfil</p>
+            </div>
+        </footer>
+    </body>
+</html>

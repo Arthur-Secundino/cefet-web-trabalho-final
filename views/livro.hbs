@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShelfLog — Livro</title>
+        <link rel="stylesheet" href="../public/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="../public/styles/livro.css">
+    </head>
+    <body>
+        <header>
+            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="prateleira.html">Prateleiras</a></li>
+                    <li><a href="busca.html">Buscar</a></li>
+                    <li><a href="perfil.html">Perfil público</a></li>
+                    <li><a href="../index.html" class="botao_sair">Sair</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="dados-livro">
+                <img src="{{livro.capa}}" alt="Capa do livro {{livro.titulo}}">
+                     <div>
+                        <h3>{{livro.titulo}}</h3>
+                        <p>{{livro.autor}}</p>
+                        <p>{{livro.sinopse}}</p>
+                        <p>{{livro.status}}</p>
+
+                        <h3 id="sua-avaliacao">Sua avaliação</h3>
+                        <p>{{livro.nota_dada}}</p>
+                        <textarea name="avaliacao" id="comentario-usuario">{{livro.comentario}}</textarea>
+                </div>
+            </div>
+
+            <h3>Avaliações de outros usuários</h3>
+            <div id="lista-avaliacoes">
+                {{#each avaliacoes}}
+                    <div>
+                        <div class="dados-usuario">
+                            <img src="{{usuario.avatar}}" alt="Avatar do usuário {{usuario.arroba}}" class="avatar-usuario">
+                            <div>
+                                <p>{{usuario.nome}}</p>
+                                <p>{{usuario.arroba}}</p>
+                            </div>
+                        </div>
+                        <p>{{nota}}</p>
+                        <p>{{comentario}}</p>
+                    </div>
+                {{/each}}
+            </div>
+        </main>
+
+        <footer>
+            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <div class="opcoes-footer">
+                <p class="cabecalho1">ShelfLog</p>
+                <p class="opcao11">Sobre nós</p>
+                <p class="opcao12">Como funciona</p>
+                <p class="opcao13">Contato</p>
+
+                <p class="cabecalho2">Explorar</p>
+                <p class="opcao21">Prateleiras populares</p>
+                <p class="opcao22">Reviews recentes</p>
+                <p class="opcao23">Buscar livros</p>
+
+                <p class="cabecalho3">Conta</p>
+                <p class="opcao31">Criar conta</p>
+                <p class="opcao32">Entrar</p>
+                <p class="opcao33">Meu perfil</p>
+            </div>
+        </footer>
+    </body>
+</html>
