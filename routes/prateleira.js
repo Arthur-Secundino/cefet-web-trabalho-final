@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
     try{
-        const prateleiras = await getPrateleiras();
-        res.render("prateleira", {prateleiras});
+        const dadosPrateleiras = await getPrateleiras();
+        res.render("prateleira", {prateleiras: dadosPrateleiras});
     }
     catch(erro){
         console.log(erro);
@@ -22,8 +22,8 @@ router.post("/", async (req, res, next) => {
     };
 
     try{
-        const resultado = await criaNovaPrateleira(novaPrateleira);
-        if(criaNovaPrateleira){
+        const prateleiraCriada = await criaNovaPrateleira(novaPrateleira);
+        if(prateleiraCriada){
             req.flash("success", "Prateleira criada com sucesso");
         }
         else{
@@ -63,4 +63,6 @@ router.post("/:idPrateleira", async (req, res, next) => {
         erro.friendlyMessage = "Erro ao adicionar livro na prateleira";
         next(erro);
     }
-})
+});
+
+export default router;
