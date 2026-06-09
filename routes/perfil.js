@@ -1,4 +1,5 @@
 import express from "express";
+import { getDadosUsuario } from "../models/consultas.js";
 
 const router = express.Router();
 

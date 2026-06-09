@@ -1,4 +1,5 @@
 import express from "express";
+import { getPrateleiras, criaNovaPrateleira, getDadosLivro, insereLivroNaPrateleira } from "../models/consultas.js";
 
 const router = express.Router();
 

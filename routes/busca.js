@@ -1,4 +1,5 @@
 import express from "express";
+import { busca } from "../models/consultas.js";
 
 const router = express.Router();
 
