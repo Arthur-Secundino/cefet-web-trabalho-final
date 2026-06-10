@@ -53,9 +53,9 @@ export async function insereLivroNaPrateleira(idPrateleira, novoLivro) {
     return resultado.modifiedCount > 0;
 }
 
-// --- LIVROS (via Google Books + avaliações nossas) -----------------------
+// --- LIVROS (via OpenLibrary + avaliações nossas) ------------------------
 
-// Retorna os dados de um livro pelo id do Google (ou pelo nome, pegando o 1º).
+// Retorna os dados de um livro pelo id da OpenLibrary (ou pelo nome, pegando o 1º).
 // Anexa as avaliações que os usuários fizeram desse livro no nosso sistema.
 export async function getDadosLivro(idLivro, nomeLivro) {
     const livro = idLivro

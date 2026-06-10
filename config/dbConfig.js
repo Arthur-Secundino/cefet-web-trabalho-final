@@ -1,4 +1,7 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+// Nome do banco usado pelo grupo no cluster Atlas compartilhado.
+const NOME_BANCO = "trabalho_web";
 
 // Conexão preguiçosa (lazy): só abre o cliente na primeira query, e reaproveita
 // a mesma promessa nas chamadas seguintes. Assim o servidor sobe mesmo sem o
@@ -13,7 +16,14 @@ function getClienteMongo() {
     }
 
     if (!clientePromessa) {
-        const cliente = new MongoClient(process.env.STRING_CONEXAO);
+        // Opções serverApi recomendadas pelo Atlas (Stable API v1).
+        const cliente = new MongoClient(process.env.STRING_CONEXAO, {
+            serverApi: {
+                version: ServerApiVersion.v1,
+                strict: true,
+                deprecationErrors: true,
+            },
+        });
         console.log("Conectando ao cluster do banco de dados...");
         clientePromessa = cliente
             .connect()
@@ -30,8 +40,8 @@ function getClienteMongo() {
     return clientePromessa;
 }
 
-// Retorna o objeto Db (o nome do banco vem embutido na STRING_CONEXAO).
+// Retorna o objeto Db (banco "trabalho_web", compartilhado pelo grupo).
 export async function getDb() {
     const cliente = await getClienteMongo();
-    return cliente.db();
+    return cliente.db(NOME_BANCO);
 }
