@@ -1,4 +1,14 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import dns from "node:dns";
+
+// Em algumas redes o Node não resolve o registro SRV do Atlas (mongodb+srv).
+// Definir DNS_SERVERS no .env (ex.: "8.8.8.8,1.1.1.1") força um DNS público.
+// Opt-in: sem a variável, nada muda (Arthur e deploy não são afetados).
+if (process.env.DNS_SERVERS) {
+    dns.setServers(
+        process.env.DNS_SERVERS.split(",").map((s) => s.trim()).filter(Boolean)
+    );
+}
 
 // Nome do banco usado pelo grupo no cluster Atlas compartilhado.
 const NOME_BANCO = "trabalho_web";
