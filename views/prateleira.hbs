@@ -6,6 +6,7 @@
         <title>ShelfLog — Prateleiras</title>
         <link rel="stylesheet" href="/styles/estilos_comuns.css">
         <link rel="stylesheet" href="/styles/prateleira.css">
+        <script src="/script/autocomplete.js" defer></script>
     </head>
     <body>
         <header>
@@ -16,6 +17,7 @@
                     <li><a href="/prateleira">Prateleiras</a></li>
                     <li><a href="/busca">Buscar</a></li>
                     <li><a href="/perfil">Perfil público</a></li>
+                    {{#if usuario}}<li class="nav-usuario">Olá, {{usuario.nome}}!</li>{{/if}}
                     <li><a href="/logout" class="botao_sair">Sair</a></li>
                 </ul>
             </nav>
@@ -44,7 +46,7 @@
                                 <p>{{descricao}}</p>
                             </div>
                             <form method="post" action="/prateleira/{{id}}" class="form-add-livro">
-                                <input type="text" name="titulo" placeholder="Título do livro" required>
+                                <input type="text" name="titulo" placeholder="Título do livro" data-autocomplete="preencher" required>
                                 <select name="status">
                                     <option>Quero ler</option>
                                     <option>Lendo</option>

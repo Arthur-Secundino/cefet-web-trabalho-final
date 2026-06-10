@@ -16,12 +16,15 @@
                     <li><a href="/prateleira">Prateleiras</a></li>
                     <li><a href="/busca">Buscar</a></li>
                     <li><a href="/perfil">Perfil público</a></li>
+                    {{#if usuario}}<li class="nav-usuario">Olá, {{usuario.nome}}!</li>{{/if}}
                     <li><a href="/logout" class="botao_sair">Sair</a></li>
                 </ul>
             </nav>
         </header>
 
         <main>
+            {{#if mensagensSucesso.length}}<div class="flash flash-sucesso">{{#each mensagensSucesso}}<p>{{this}}</p>{{/each}}</div>{{/if}}
+            {{#if mensagensErro.length}}<div class="flash flash-erro">{{#each mensagensErro}}<p>{{this}}</p>{{/each}}</div>{{/if}}
             <h1>Em alta na comunidade</h1>
             <p>Os livros que estão movimentando os leitores neste momento.</p>
             <div id="livros_em_alta" class="lista-cards">

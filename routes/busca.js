@@ -3,6 +3,25 @@ import { busca } from "../models/consultas.js";
 
 const router = express.Router();
 
+// Endpoint JSON para o autocomplete (sugestões enquanto o usuário digita).
+router.get("/api", async (req, res) => {
+    try {
+        const termo = req.query.nome || "";
+        if (termo.trim().length < 2) return res.json([]);
+
+        const livros = (await busca(termo)).slice(0, 6).map((l) => ({
+            livroId: l.livroId,
+            titulo: l.titulo,
+            autor: l.autor,
+            capa: l.capa,
+        }));
+        res.json(livros);
+    } catch (erro) {
+        console.warn("Falha no autocomplete:", erro.message);
+        res.json([]);
+    }
+});
+
 router.get("/", async (req, res, next) => {
     try {
         const termo = req.query.nome || "";
