@@ -4,58 +4,78 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog — Prateleiras</title>
-        <link rel="stylesheet" href="../public/styles/estilos_comuns.css">
-        <link rel="stylesheet" href="../public/styles/prateleira.css">
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/prateleira.css">
     </head>
     <body>
         <header>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <nav>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="prateleira.html">Prateleiras</a></li>
-                    <li><a href="busca.html">Buscar</a></li>
-                    <li><a href="perfil.html">Perfil público</a></li>
-                    <li><a href="../index.html" class="botao_sair">Sair</a></li>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/prateleira">Prateleiras</a></li>
+                    <li><a href="/busca">Buscar</a></li>
+                    <li><a href="/perfil">Perfil público</a></li>
+                    <li><a href="/logout" class="botao_sair">Sair</a></li>
                 </ul>
             </nav>
         </header>
 
         <main>
+            {{#if mensagensSucesso.length}}<div class="flash flash-sucesso">{{#each mensagensSucesso}}<p>{{this}}</p>{{/each}}</div>{{/if}}
+            {{#if mensagensErro.length}}<div class="flash flash-erro">{{#each mensagensErro}}<p>{{this}}</p>{{/each}}</div>{{/if}}
+
             <div id="menu-principal-prateleira">
                 <h1>Suas prateleiras</h1>
-                <button>Criar prateleira</button>
             </div>
+
+            <form method="post" action="/prateleira" class="form-criar-prateleira">
+                <input type="text" name="nome" placeholder="Nome da prateleira" required>
+                <input type="text" name="descricao" placeholder="Descrição (opcional)">
+                <button type="submit">Criar prateleira</button>
+            </form>
 
             <div id="lista-prateleiras">
                 {{#each prateleiras}}
                     <div>
                         <div class="menu-prateleira-especifica">
                             <div>
-                                <p>{{titulo}}</p>
+                                <p>{{nome}}</p>
                                 <p>{{descricao}}</p>
                             </div>
-                            <button>Adicionar livro</button>
+                            <form method="post" action="/prateleira/{{id}}" class="form-add-livro">
+                                <input type="text" name="titulo" placeholder="Título do livro" required>
+                                <select name="status">
+                                    <option>Quero ler</option>
+                                    <option>Lendo</option>
+                                    <option>Lido</option>
+                                </select>
+                                <button type="submit">Adicionar livro</button>
+                            </form>
                         </div>
                         <div>
                             <div class="lista-cards">
                                 {{#each livros}}
-                                    <article class="card card-com-fundo">
+                                    <a class="card card-com-fundo" href="/livro/{{livroId}}">
                                         <img src="{{capa}}" alt="Capa do livro {{titulo}}">
                                         <p>{{status}}</p>
                                         <p>{{titulo}}</p>
                                         <p>{{nota}}</p>
-                                    </article>
+                                    </a>
+                                {{else}}
+                                    <p>Nenhum livro nesta prateleira ainda.</p>
                                 {{/each}}
                             </div>
                         </div>
                     </div>
+                {{else}}
+                    <p>Você ainda não tem prateleiras. Crie a primeira acima!</p>
                 {{/each}}
             </div>
         </main>
 
         <footer>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="opcoes-footer">
                 <p class="cabecalho1">ShelfLog</p>
                 <p class="opcao11">Sobre nós</p>

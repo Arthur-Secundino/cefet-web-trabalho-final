@@ -1,46 +1,19 @@
-const botaoCriarContaEl = document.querySelector("#botao_criar_conta");
-const botaoLoginEl = document.querySelector("#botao_login");
+// Controla a abertura/fechamento dos modais de login e cadastro na landing.
+// O envio dos dados é feito pelos próprios <form> (POST /login e POST /cadastro).
 
-const modalCriarContaEl = document.querySelector("#criar_conta");
-const modalLogarEl = document.querySelector("#logar");
+const botaoCriarConta = document.querySelector("#botao_criar_conta");
+const botaoLogin = document.querySelector("#botao_login");
+const botaoHeroCriar = document.querySelector("#botao-criar-prateleira");
 
-const botaoEnviarDadosCadastroEl = document.querySelector("#enviar_dados_cadastro");
-const botaoEnviarDadosLoginEl = document.querySelector("#enviar_dados_login");
+const modalCriarConta = document.querySelector("#criar_conta");
+const modalLogar = document.querySelector("#logar");
 
-const botaoCancelarCadastroEl = document.querySelector("#cancelar_cadastro");
-const botaoCancelarLoginEl = document.querySelector("#cancelar_login");
+const cancelarCadastro = document.querySelector("#cancelar_cadastro");
+const cancelarLogin = document.querySelector("#cancelar_login");
 
-const inputNomeUsuarioCadastroEl = document.querySelector("#nome_usuario_cadastro");
-const inputEmailCadastroEl = document.querySelector("#email_cadastro");
-const inputSenhaCadastroEl = document.querySelector("#senha_cadastro");
+botaoCriarConta?.addEventListener("click", () => modalCriarConta.showModal());
+botaoHeroCriar?.addEventListener("click", () => modalCriarConta.showModal());
+botaoLogin?.addEventListener("click", () => modalLogar.showModal());
 
-const inputEmailLoginEl = document.querySelector("#email_login");
-const inputSenhaLoginEl = document.querySelector("#senha_login");
-
-botaoCriarContaEl.addEventListener("click", () => {
-    modalCriarContaEl.showModal();
-});
-
-botaoLoginEl.addEventListener("click", () => {
-    modalLogarEl.showModal();
-});
-
-botaoEnviarDadosCadastroEl.addEventListener("click", () => {
-//    if(inputNomeUsuarioCadastroEl.value !== "" && inputEmailCadastroEl.value !== "" && inputSenhaCadastroEl.value !== ""){
-        window.location.href = "./pages/home.html";
-//    }
-});
-
-botaoEnviarDadosLoginEl.addEventListener("click", () => {
-//    if(inputEmailLoginEl.value !== "" && inputSenhaLoginEl.value !== ""){
-        window.location.href = "./pages/home.html";
-//    }
-});
-
-botaoCancelarCadastroEl.addEventListener("click", () => {
-    modalCriarContaEl.close();
-});
-
-botaoCancelarLoginEl.addEventListener("click", () => {
-    modalLogarEl.close();
-});
+cancelarCadastro?.addEventListener("click", () => modalCriarConta.close());
+cancelarLogin?.addEventListener("click", () => modalLogar.close());

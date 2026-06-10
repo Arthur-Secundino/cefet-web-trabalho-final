@@ -4,19 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog — Livro</title>
-        <link rel="stylesheet" href="../public/styles/estilos_comuns.css">
-        <link rel="stylesheet" href="../public/styles/livro.css">
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/livro.css">
     </head>
     <body>
         <header>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <nav>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="prateleira.html">Prateleiras</a></li>
-                    <li><a href="busca.html">Buscar</a></li>
-                    <li><a href="perfil.html">Perfil público</a></li>
-                    <li><a href="../index.html" class="botao_sair">Sair</a></li>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/prateleira">Prateleiras</a></li>
+                    <li><a href="/busca">Buscar</a></li>
+                    <li><a href="/perfil">Perfil público</a></li>
+                    <li><a href="/logout" class="botao_sair">Sair</a></li>
                 </ul>
             </nav>
         </header>
@@ -30,9 +30,19 @@
                         <p>{{livro.sinopse}}</p>
                         <p>{{livro.status}}</p>
 
-                        <h3 id="sua-avaliacao">Sua avaliação</h3>
-                        <p>{{livro.nota_dada}}</p>
-                        <textarea name="avaliacao" id="comentario-usuario">{{livro.comentario}}</textarea>
+                        {{#if usuario}}
+                        <form method="post" action="/livro/{{livro.livroId}}">
+                            <h3 id="sua-avaliacao">Sua avaliação</h3>
+                            <input type="hidden" name="titulo" value="{{livro.titulo}}">
+                            <label>Nota (0 a 5)
+                                <input type="number" name="nota" min="0" max="5" step="0.5" required>
+                            </label>
+                            <textarea name="comentario" id="comentario-usuario" placeholder="O que você achou?"></textarea>
+                            <button type="submit">Salvar avaliação</button>
+                        </form>
+                        {{else}}
+                        <p><a href="/">Entre na sua conta</a> para avaliar este livro.</p>
+                        {{/if}}
                 </div>
             </div>
 
@@ -55,7 +65,7 @@
         </main>
 
         <footer>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="opcoes-footer">
                 <p class="cabecalho1">ShelfLog</p>
                 <p class="opcao11">Sobre nós</p>

@@ -4,19 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog — Buscar</title>
-        <link rel="stylesheet" href="../public/styles/estilos_comuns.css">
-        <link rel="stylesheet" href="../public/styles/busca.css">
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/busca.css">
     </head>
     <body>
         <header>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <nav>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="prateleira.html">Prateleiras</a></li>
-                    <li><a href="busca.html">Buscar</a></li>
-                    <li><a href="perfil.html">Perfil público</a></li>
-                    <li><a href="../index.html" class="botao_sair">Sair</a></li>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/prateleira">Prateleiras</a></li>
+                    <li><a href="/busca">Buscar</a></li>
+                    <li><a href="/perfil">Perfil público</a></li>
+                    <li><a href="/logout" class="botao_sair">Sair</a></li>
                 </ul>
             </nav>
         </header>
@@ -24,37 +24,44 @@
         <main>
             <h1>Encontre seu próximo livro</h1>
 
-            <div class="busca-wrap">
-                <input type="search" placeholder="Digite o nome de um livro ou usuário">
-            </div>
+            <form method="get" action="/busca">
+                <div class="busca-wrap">
+                    <input type="search" name="nome" value="{{termo}}" placeholder="Digite o nome de um livro" required>
+                    <button type="submit">Buscar</button>
+                </div>
 
-            <p class="filtros-label">Filtrar busca de livros por:</p>
-            <div>
-                <label for="genero">Gênero
-                    <input type="text" id="genero" placeholder="Ex.: fantasia">
-                </label>
-                <label for="nota-minima">Nota mínima
-                    <input type="text" id="nota-minima" placeholder="Ex.: 4.0">
-                </label>
-            </div>
+                <p class="filtros-label">Filtrar busca de livros por:</p>
+                <div>
+                    <label for="genero">Gênero
+                        <input type="text" id="genero" name="genero" value="{{genero}}" placeholder="Ex.: fantasy">
+                    </label>
+                    <label for="nota-minima">Nota mínima
+                        <input type="text" id="nota-minima" name="notaMinima" value="{{notaMinima}}" placeholder="Ex.: 4.0">
+                    </label>
+                </div>
+            </form>
 
+            {{#if buscou}}
             <div id="resultados-busca">
-                <p>Resultados obtidos</p>
+                <p>Resultados para "{{termo}}"</p>
                 <div id="lista-resultados" class="lista-cards">
                     {{#each resultados}}
-                        <article class="card">
+                        <a class="card" href="/livro/{{livroId}}">
                             <img src="{{capa}}" alt="Capa do livro {{titulo}}">
                             <p>{{titulo}}</p>
-                            <p>{{sinopse}}</p>
-                            <p>{{nota}}</p>
-                        </article>
+                            <p>{{autor}}</p>
+                            <p>{{notaExterna}}</p>
+                        </a>
+                    {{else}}
+                        <p>Nenhum livro encontrado.</p>
                     {{/each}}
                 </div>
             </div>
+            {{/if}}
         </main>
 
         <footer>
-            <img src="../imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="opcoes-footer">
                 <p class="cabecalho1">ShelfLog</p>
                 <p class="opcao11">Sobre nós</p>

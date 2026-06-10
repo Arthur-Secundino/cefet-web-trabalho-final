@@ -4,23 +4,33 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShelfLog — Sua estante digital</title>
-        <link rel="stylesheet" href="./styles/estilos_comuns.css">
-        <link rel="stylesheet" href="./styles/landing_page.css">
-        <link rel="stylesheet" href="./styles/modais.css">
-        <script src="./script/modais.js" defer></script>
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/landing_page.css">
+        <link rel="stylesheet" href="/styles/modais.css">
+        <script src="/script/modais.js" defer></script>
     </head>
     <body>
+        {{#if mensagensErro.length}}
+            <div class="flash flash-erro">
+                {{#each mensagensErro}}<p>{{this}}</p>{{/each}}
+            </div>
+        {{/if}}
+        {{#if mensagensSucesso.length}}
+            <div class="flash flash-sucesso">
+                {{#each mensagensSucesso}}<p>{{this}}</p>{{/each}}
+            </div>
+        {{/if}}
+
         <header>
-            <img src="./imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="botoes-landing-page">
                 <button id="botao_login">Já tem conta? Entrar</button>
                 <button id="botao_criar_conta">Criar conta</button>
             </div>
 
             <dialog id="criar_conta">
-                <h2>Crie sua conta</h2>
-
-                <div class="modal-coluna">
+                <form class="modal-coluna" method="post" action="/cadastro">
+                    <h2>Crie sua conta</h2>
                     <label for="nome_usuario_cadastro">Nome do usuário
                         <input id="nome_usuario_cadastro" name="nome" type="text" placeholder="Como podemos te chamar?" required>
                     </label>
@@ -33,15 +43,14 @@
 
                     <div>
                         <button id="cancelar_cadastro" type="button">Cancelar</button>
-                        <button id="enviar_dados_cadastro" type="button">Criar conta</button>
+                        <button type="submit">Criar conta</button>
                     </div>
-                </div>
+                </form>
             </dialog>
 
             <dialog id="logar">
-                <h2>Faça login</h2>
-
-                <div class="modal-coluna">
+                <form class="modal-coluna" method="post" action="/login">
+                    <h2>Faça login</h2>
                     <label for="email_login">Email
                         <input id="email_login" name="email" type="email" placeholder="voce@exemplo.com" required>
                     </label>
@@ -51,39 +60,39 @@
 
                     <div>
                         <button id="cancelar_login" type="button">Cancelar</button>
-                        <button id="enviar_dados_login" type="button">Entrar</button>
+                        <button type="submit">Entrar</button>
                     </div>
-                </div>
+                </form>
             </dialog>
         </header>
 
         <main>
             <section class="hero">
-                <h1>Sua estante digital,</h1> 
+                <h1>Sua estante digital,</h1>
                   <h1><em>do seu jeito</em></h1>
                 <p class="hero-sub">
                     Organize seus livros em prateleiras, veja o que outros leitores estão lendo e mostre seu gosto literário.
                 </p>
-                <button id="botao-criar-prateleira">Crie sua prateleira</button>
+                <button id="botao-criar-prateleira">Crie sua conta</button>
                 <div class="hero-imagem-wrap">
-                    <img src="./imgs/prateleira1.png" alt="Imagem de uma prateleira de livros" id="prateleira1">
+                    <img src="/imgs/prateleira1.png" alt="Imagem de uma prateleira de livros" id="prateleira1">
                 </div>
             </section>
 
             <h2 class="margem-para-cima">Como funciona?</h2>
             <div class="lista-cards">
                 <article class="card">
-                    <img src="./imgs/prateleira2.png" alt="Imagem de uma prateleira com livros" id="prateleira2">
+                    <img src="/imgs/prateleira2.png" alt="Imagem de uma prateleira com livros" id="prateleira2">
                     <p>Crie suas Prateleiras</p>
                     <p>Separe seus livros em coleções do jeito que preferir.</p>
                 </article>
                 <article class="card">
-                    <img src="./imgs/livro_amor.png" alt="Imagem de um livro com duas páginas dobradas, formando um coração">
+                    <img src="/imgs/livro_amor.png" alt="Imagem de um livro com duas páginas dobradas, formando um coração">
                     <p>Avalie e Registre</p>
                     <p>Dê notas, escreva o que achou e acompanhe o que já leu.</p>
                 </article>
                 <article class="card">
-                    <img src="./imgs/compartilhando.png" alt="Imagem de pessoas em uma sala conversando sobre livros">
+                    <img src="/imgs/compartilhando.png" alt="Imagem de pessoas em uma sala conversando sobre livros">
                     <p>Descubra e Compartilhe</p>
                     <p>Veja o que o pessoal tá lendo e compartilhe suas leituras.</p>
                 </article>
@@ -94,7 +103,7 @@
                 <div class="depoimento">
                     <p>Finalmente consegui organizar meus livros direito, antes ficava tudo numa lista no bloco de notas kkk</p>
                     <div class="dados-usuario">
-                        <img src="./imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
+                        <img src="/imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
                         <div>
                             <p>Roberto Braga</p>
                             <p>@Bragoberto</p>
@@ -104,7 +113,7 @@
                 <div class="depoimento">
                     <p>Gosto de ver o que o pessoal tá lendo, já peguei várias dicas boas aqui.</p>
                     <div class="dados-usuario">
-                        <img src="./imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
+                        <img src="/imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
                         <div>
                             <p>Natália Ferreira</p>
                             <p>@NatFerr</p>
@@ -114,7 +123,7 @@
                 <div class="depoimento">
                     <p>As prateleiras temáticas são muito legais, dá pra separar tudo por gênero, por ano, do jeito que quiser.</p>
                     <div class="dados-usuario">
-                        <img src="./imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
+                        <img src="/imgs/avatar.png" alt="Avatar do usuário" class="avatar-usuario">
                         <div>
                             <p>Antônio Liebe</p>
                             <p>@AntoLie</p>
@@ -124,7 +133,7 @@
             </div>
         </main>
         <footer>
-            <img src="./imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
             <div class="opcoes-footer">
                 <p class="cabecalho1">ShelfLog</p>
                 <p class="opcao11">Sobre nós</p>
