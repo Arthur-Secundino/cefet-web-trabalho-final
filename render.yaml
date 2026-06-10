@@ -1,0 +1,17 @@
+# Blueprint de deploy para o Render (render.com).
+# No painel do Render: New > Blueprint > conecte este repositório.
+services:
+  - type: web
+    name: shelflog
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      # String de conexão do MongoDB Atlas. sync:false => o Render pergunta o
+      # valor na hora (não fica salvo no repositório).
+      - key: STRING_CONEXAO
+        sync: false
+      # Segredo da sessão gerado automaticamente pelo Render.
+      - key: SESSION_SECRET
+        generateValue: true

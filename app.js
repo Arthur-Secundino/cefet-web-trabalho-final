@@ -21,7 +21,8 @@ function requireAuth(req, res, next) {
     next();
 }
 
-const PORTA = process.env.PORTA || 3000;
+// Hosts de deploy (Render etc.) injetam a porta em PORT; localmente usamos PORTA.
+const PORTA = process.env.PORT || process.env.PORTA || 3000;
 
 const app = express();
 app.set("port", PORTA);
