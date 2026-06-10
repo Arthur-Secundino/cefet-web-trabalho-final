@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import conectarAoBanco from "../config/dbConfig.js";
 
-const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
+const conexao = await conectarAoBanco();
 
 export async function getPrateleiras(){
 
