@@ -62,6 +62,11 @@ app.get("/", (req, res) => {
     res.render("landing");
 });
 
+// Página institucional (Sobre nós, Como funciona, Contato).
+app.get("/sobre", (req, res) => {
+    res.render("sobre");
+});
+
 // Autenticação (cadastro, login, logout).
 app.use("/", authRouter);
 

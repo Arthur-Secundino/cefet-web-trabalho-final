@@ -1,0 +1,78 @@
+/* página sobre / como funciona / contato */
+
+.sobre-intro {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--cinza-escuro);
+    margin: 4px 0 28px;
+}
+
+/* âncoras não ficam escondidas atrás do header fixo */
+section[id] { scroll-margin-top: 90px; }
+
+.bloco-sobre {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+}
+
+.bloco-sobre h2 { margin-top: 0; }
+
+.bloco-sobre > p {
+    max-width: 70ch;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+/* passos do como funciona */
+.passos {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 16px;
+}
+
+.passos li {
+    background: var(--cinza-fundo);
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+
+.passos strong {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--teal-escuro);
+    margin-bottom: 6px;
+}
+
+.passos p { margin: 0; font-size: 0.92rem; }
+
+/* contato */
+.lista-contato {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.lista-contato strong { display: block; margin-bottom: 2px; }
+
+.lista-contato a {
+    color: var(--teal-escuro);
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.lista-contato a:hover { text-decoration: underline; }
+
+@media (max-width: 480px) {
+    .bloco-sobre { padding: 20px 16px; }
+}

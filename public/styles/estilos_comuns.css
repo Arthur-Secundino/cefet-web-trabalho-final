@@ -178,7 +178,8 @@ main > p {
 /* cards */
 .lista-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* min(260px, 100%) impede a grade de ficar mais larga que a tela */
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 20px;
 }
 
@@ -485,4 +486,22 @@ a.card { text-decoration: none; color: inherit; }
     font-weight: 600;
     color: var(--cinza-escuro);
     white-space: nowrap;
+}
+
+/* títulos longos não vazam dos cards */
+.card { overflow-wrap: break-word; min-width: 0; }
+
+/* links do rodapé */
+.opcoes-footer a { color: inherit; text-decoration: none; }
+.opcoes-footer a:hover { color: var(--teal-escuro); }
+
+/* responsivo - telas bem estreitas */
+@media (max-width: 480px) {
+    header { padding: 10px 14px; }
+    .logo { width: 120px; }
+    main { padding: 20px 14px 32px; }
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.25rem; }
+    .flash { padding: 10px 14px; font-size: 0.9rem; }
+    footer { padding: 20px 14px; }
 }

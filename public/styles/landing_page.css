@@ -81,7 +81,7 @@ main > .lista-cards .card {
 /* depoimentos */
 .lista-depoimentos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 20px;
     margin-bottom: 20px;
 }
@@ -90,4 +90,12 @@ main > .lista-cards .card {
     .botoes-landing-page { gap: 8px; flex-wrap: wrap; }
     .hero { padding: 28px 0 12px; }
     #botao-criar-prateleira { margin-bottom: 28px; }
+}
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
+    .hero-sub { font-size: 1rem; }
+    #botao-criar-prateleira { width: 100%; }
+    .botoes-landing-page { width: 100%; }
+    .botoes-landing-page button { flex: 1; }
 }

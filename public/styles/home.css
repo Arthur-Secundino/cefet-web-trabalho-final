@@ -46,3 +46,14 @@
     margin-top: 10px;
     padding-top: 8px;
 }
+
+/* responsivo - mobile */
+@media (max-width: 600px) {
+    .centraliza-imagem,
+    #livros_em_alta .centraliza-imagem,
+    #reviews_recentes .centraliza-imagem {
+        max-width: 130px;
+    }
+    .review .card-interno > p:last-child { font-size: 1.2rem; }
+    .review > p:last-child { font-size: 0.95rem; }
+}

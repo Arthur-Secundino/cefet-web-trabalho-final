@@ -103,3 +103,15 @@ main > div > label input {
     content: "★ ";
     color: var(--teal);
 }
+
+/* responsivo - mobile */
+@media (max-width: 600px) {
+    .busca-wrap { flex-direction: column; }
+    .busca-wrap button { width: 100%; }
+
+    /* filtros empilhados e inputs ocupando a largura toda */
+    main > div:has(> label) { flex-direction: column; gap: 12px; }
+    main > div > label input { min-width: 0; width: 100%; }
+
+    #resultados-busca > p:first-child { font-size: 1.1rem; }
+}

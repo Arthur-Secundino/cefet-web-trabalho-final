@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShelfLog — Sobre</title>
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/sobre.css">
+        <script src="/script/tema.js"></script>
+    </head>
+    <body>
+        {{#if usuario}}
+            {{> menu}}
+        {{else}}
+            <header>
+                <a href="/"><img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo"></a>
+                <nav>
+                    <ul>
+                        <li><a href="/" class="botao_sair">Entrar</a></li>
+                    </ul>
+                </nav>
+            </header>
+        {{/if}}
+
+        <main>
+            <h1>Sobre o ShelfLog</h1>
+            <p class="sobre-intro">Sua estante digital, do seu jeito.</p>
+
+            <section id="sobre-nos" class="bloco-sobre">
+                <h2>Sobre nós</h2>
+                <p>
+                    O ShelfLog nasceu como trabalho final da disciplina de Web do CEFET-MG,
+                    feito por dois estudantes que gostam de livros e queriam um lugar simples
+                    para organizar as leituras: sem planilha, sem bloco de notas, sem caos.
+                </p>
+                <p>
+                    Aqui cada leitor monta suas prateleiras, registra o que leu, avalia com
+                    nota e comentário e descobre o que outras pessoas estão lendo. Os dados
+                    dos livros (capa, autor, sinopse) vêm da API pública da OpenLibrary.
+                </p>
+            </section>
+
+            <section id="como-funciona" class="bloco-sobre">
+                <h2>Como funciona</h2>
+                <ol class="passos">
+                    <li>
+                        <strong>1 · Crie sua conta</strong>
+                        <p>Cadastro rápido com nome, email e senha. Sua senha é guardada criptografada.</p>
+                    </li>
+                    <li>
+                        <strong>2 · Monte suas prateleiras</strong>
+                        <p>Crie coleções do seu jeito ("Favoritos", "Terror", "Para 2026"...) e adicione livros buscando pelo título.</p>
+                    </li>
+                    <li>
+                        <strong>3 · Avalie e compartilhe</strong>
+                        <p>Dê notas, escreva o que achou e compartilhe seu perfil público por link com quem quiser.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="contato" class="bloco-sobre">
+                <h2>Contato</h2>
+                <p>Achou um bug, tem uma sugestão ou só quer falar de livros?</p>
+                <ul class="lista-contato">
+                    <li>
+                        <strong>GitHub do projeto</strong>
+                        <a href="https://github.com/Arthur-Secundino/cefet-web-trabalho-final" target="_blank" rel="noopener">github.com/Arthur-Secundino/cefet-web-trabalho-final</a>
+                    </li>
+                    <li>
+                        <strong>Email</strong>
+                        <a href="mailto:artsecundino@gmail.com">artsecundino@gmail.com</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        {{> rodape}}
+    </body>
+</html>
