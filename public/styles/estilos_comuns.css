@@ -505,3 +505,43 @@ a.card { text-decoration: none; color: inherit; }
     .flash { padding: 10px 14px; font-size: 0.9rem; }
     footer { padding: 20px 14px; }
 }
+
+
+/* menu mais compacto no celular */
+@media (max-width: 480px) {
+    header { position: static; }
+    nav a { padding: 6px 8px; font-size: 0.85rem; }
+    .nav-usuario { font-size: 0.8rem; padding: 4px 6px; }
+    .botao_sair { padding: 6px 10px; font-size: 0.85rem; }
+}
+
+/* animações sutis de entrada (o modo reduced-motion já as desativa) */
+@keyframes surge {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+.card, .depoimento, .flash, .bloco-sobre { animation: surge 0.35s ease-out both; }
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+button:active { transform: scale(0.98); }
+
+/* cartão central das telas de autenticação (esqueci/redefinir senha) */
+.cartao-auth {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 28px 32px;
+    max-width: 440px;
+    margin: 24px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.cartao-auth label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 0.85rem; }
+.link-esqueci { font-size: 0.85rem; color: var(--teal-escuro); text-decoration: none; align-self: flex-start; }
+.link-esqueci:hover { text-decoration: underline; }

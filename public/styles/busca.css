@@ -45,14 +45,14 @@ main > p {
 }
 
 /* filtros */
-main > div:has(> label) {
+.filtros {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 28px;
 }
 
-main > div > label {
+.filtros > label {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -110,8 +110,8 @@ main > div > label input {
     .busca-wrap button { width: 100%; }
 
     /* filtros empilhados e inputs ocupando a largura toda */
-    main > div:has(> label) { flex-direction: column; gap: 12px; }
-    main > div > label input { min-width: 0; width: 100%; }
+    .filtros { flex-direction: column; gap: 12px; }
+    .filtros > label input { min-width: 0; width: 100%; }
 
     #resultados-busca > p:first-child { font-size: 1.1rem; }
 }

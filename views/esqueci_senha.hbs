@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShelfLog — Esqueci minha senha</title>
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <script src="/script/tema.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="/"><img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo"></a>
+        </header>
+
+        <main>
+            {{> flash}}
+            <form class="cartao-auth" method="post" action="/esqueci-senha">
+                <h1>Esqueci minha senha</h1>
+                <p>Informe o email da sua conta e enviaremos um link para criar uma senha nova.</p>
+                <label>Email
+                    <input type="email" name="email" placeholder="voce@exemplo.com" required>
+                </label>
+                <button type="submit">Enviar link de redefinição</button>
+                <a class="link-esqueci" href="/">Voltar para o início</a>
+            </form>
+        </main>
+
+        {{> rodape}}
+    </body>
+</html>

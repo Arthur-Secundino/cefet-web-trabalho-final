@@ -188,3 +188,38 @@ export async function getPrateleiraPorId(idPrateleira) {
     if (!_id) return null;
     return db.collection("prateleiras").findOne({ _id });
 }
+
+// --- RECUPERAÇÃO DE SENHA -------------------------------------------------
+
+// Guarda um token de redefinição (validade de 1 hora) para o usuário do email.
+// Retorna o usuário, ou null se o email não estiver cadastrado.
+export async function criaTokenRedefinicao(email, token) {
+    const db = await getDb();
+    const usuario = await db.collection("usuarios").findOne({ email });
+    if (!usuario) return null;
+
+    await db.collection("usuarios").updateOne(
+        { _id: usuario._id },
+        { $set: { resetToken: token, resetExpira: new Date(Date.now() + 60 * 60 * 1000) } }
+    );
+    return usuario;
+}
+
+// Busca o usuário dono de um token ainda válido (não expirado).
+export async function buscaUsuarioPorToken(token) {
+    const db = await getDb();
+    return db.collection("usuarios").findOne({
+        resetToken: token,
+        resetExpira: { $gt: new Date() },
+    });
+}
+
+// Grava a nova senha e invalida o token.
+export async function redefineSenha(idUsuario, senhaHash) {
+    const db = await getDb();
+    const resultado = await db.collection("usuarios").updateOne(
+        { _id: paraObjectId(idUsuario) },
+        { $set: { senhaHash }, $unset: { resetToken: "", resetExpira: "" } }
+    );
+    return resultado.modifiedCount > 0;
+}

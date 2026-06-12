@@ -1,6 +1,15 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { criaUsuario, buscaUsuarioPorEmail } from "../models/consultas.js";
+import crypto from "node:crypto";
+import {
+    criaUsuario,
+    buscaUsuarioPorEmail,
+    criaTokenRedefinicao,
+    buscaUsuarioPorToken,
+    redefineSenha,
+} from "../models/consultas.js";
+import { enviaEmail } from "../services/email.js";
+
 
 const router = express.Router();
 
@@ -45,7 +54,15 @@ router.post("/cadastro", async (req, res, next) => {
             return res.redirect("/");
         }
 
-        logaNaSessao(req, { _id: idNovo, nome, arroba: geraArroba(nome) });
+                logaNaSessao(req, { _id: idNovo, nome, arroba: geraArroba(nome) });
+
+        // Email de boas-vindas (não bloqueia o cadastro se o envio falhar).
+        enviaEmail(
+            email,
+            "Bem-vindo ao ShelfLog!",
+            `<h2>Olá, ${nome}!</h2><p>Sua conta no ShelfLog foi criada. Monte suas prateleiras e boas leituras!</p>`
+        ).catch((e) => console.warn("Falha no email de boas-vindas:", e.message));
+
         res.redirect("/home");
     } catch (erro) {
         erro.friendlyMessage = "Erro ao criar a conta";
@@ -75,6 +92,72 @@ router.post("/login", async (req, res, next) => {
 // --- LOGOUT --- (GET para funcionar como link simples no menu)
 router.get("/logout", (req, res) => {
     req.session.destroy(() => res.redirect("/"));
+});
+
+// --- ESQUECI MINHA SENHA ---
+router.get("/esqueci-senha", (req, res) => {
+    res.render("esqueci_senha");
+});
+
+router.post("/esqueci-senha", async (req, res, next) => {
+    try {
+        const token = crypto.randomBytes(32).toString("hex");
+        const usuario = await criaTokenRedefinicao(req.body.email, token);
+
+        if (usuario) {
+            const link = `${req.protocol}://${req.get("host")}/redefinir-senha/${token}`;
+            const enviado = await enviaEmail(
+                req.body.email,
+                "Redefinição de senha · ShelfLog",
+                `<p>Para redefinir sua senha, acesse: <a href="${link}">${link}</a></p><p>O link vale por 1 hora.</p>`
+            );
+            // Sem SMTP configurado (dev), mostra o link na tela para testar o fluxo.
+            if (!enviado) req.flash("success", `Sem SMTP configurado. Link de teste: ${link}`);
+        }
+
+        // Mesma resposta com ou sem conta: não revela quais emails existem.
+        req.flash("success", "Se este email estiver cadastrado, enviamos um link de redefinição.");
+        res.redirect("/esqueci-senha");
+    } catch (erro) {
+        erro.friendlyMessage = "Erro ao iniciar a redefinição de senha";
+        next(erro);
+    }
+});
+
+router.get("/redefinir-senha/:token", async (req, res, next) => {
+    try {
+        const usuario = await buscaUsuarioPorToken(req.params.token);
+        if (!usuario) {
+            req.flash("error", "Link inválido ou expirado. Peça uma nova redefinição.");
+            return res.redirect("/esqueci-senha");
+        }
+        res.render("redefinir_senha", { token: req.params.token });
+    } catch (erro) {
+        erro.friendlyMessage = "Erro ao abrir a redefinição de senha";
+        next(erro);
+    }
+});
+
+router.post("/redefinir-senha/:token", async (req, res, next) => {
+    try {
+        const usuario = await buscaUsuarioPorToken(req.params.token);
+        if (!usuario) {
+            req.flash("error", "Link inválido ou expirado. Peça uma nova redefinição.");
+            return res.redirect("/esqueci-senha");
+        }
+        if (!req.body.senha || req.body.senha !== req.body.confirmar) {
+            req.flash("error", "As senhas não coincidem.");
+            return res.redirect(`/redefinir-senha/${req.params.token}`);
+        }
+
+        const senhaHash = await bcrypt.hash(req.body.senha, 10);
+        await redefineSenha(usuario._id, senhaHash);
+        req.flash("success", "Senha redefinida com sucesso! Faça login.");
+        res.redirect("/");
+    } catch (erro) {
+        erro.friendlyMessage = "Erro ao redefinir a senha";
+        next(erro);
+    }
 });
 
 export default router;
