@@ -16,6 +16,12 @@ function paraObjectId(id) {
     }
 }
 
+// --- AVALIACOES ----------------------------------------------------------------
+export async function getAvaliacoes(){
+    const db = await getDb();
+    return db.collection("avaliacoes").find().toArray();
+}
+
 // --- PRATELEIRAS ---------------------------------------------------------
 
 // Lista as prateleiras. Se um idUsuario for passado, traz só as dele;
@@ -146,6 +152,11 @@ export async function buscaUsuarioPorNome(nomeBuscado){
     const db = await getDb();
     const usuario = await db.collection("usuarios").findOne({ nome: nomeBuscado });
     return usuario._id;
+}
+
+export async function getUsuarioPorId(idUsuario){
+    const db = await getDb();
+    return await db.collection("usuarios").findOne({_id: idUsuario})
 }
 
 // --- BUSCA ---------------------------------------------------------------

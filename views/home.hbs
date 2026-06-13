@@ -54,11 +54,10 @@
             <div id="reviews_recentes" class="lista-cards">
                 {{#each reviewsRecentes}}
                     <article class="review card">
-                        <h4 class="titulo">{{titulo}}</h4>
                         <article class="card card-interno">
                             <img src="{{livro.capa}}" alt="Capa do livro {{livro.titulo}}" class="centraliza-imagem">
                             <p>{{livro.titulo}}</p>
-                            <p>{{livro.nota}}</p>
+                            <p>{{avaliacao.nota}}</p>
                         </article>
                         <div class="dados-usuario">
                             <img src="{{usuario.avatar}}" alt="Avatar do usuário {{usuario.arroba}}" class="avatar-usuario">
@@ -67,7 +66,7 @@
                                 <p>{{usuario.arroba}}</p>
                             </div>
                         </div>
-                        <p>{{review}}</p>
+                        <p>{{avaliacao.comentario}}</p>
                     </article>
                 {{/each}}
             </div>

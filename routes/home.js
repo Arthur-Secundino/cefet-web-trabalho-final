@@ -1,6 +1,6 @@
 import express from "express";
-import { getPrateleiras } from "../models/consultas.js";
-import { buscaLivros } from "../services/livros.js";
+import { getPrateleiras, getAvaliacoes, getUsuarioPorId } from "../models/consultas.js";
+import { buscaLivros, buscaLivroPorId } from "../services/livros.js";
 
 const router = express.Router();
 
@@ -28,10 +28,43 @@ router.get("/", async (req, res, next) => {
             console.warn("Banco indisponível na home:", erroBanco.message);
         }
 
+        let reviewsRecentes = [];
+        try{
+            const avaliacoes = await getAvaliacoes();
+            const avaliacoesRecentes = avaliacoes.sort((a, b) => {
+                if(a.criadoEm < b.criadoEm){
+                    return 1;
+                }
+                else if(a.criadoEm === b.criadoEm){
+                    return 0;
+                }
+                else{
+                    return -1;
+                }
+            }).slice(0, 6);
+
+            reviewsRecentes = await Promise.all(
+                avaliacoesRecentes.map(async (avl) => {
+                    const liv = await buscaLivroPorId(avl.livroId);
+                    const usu = await getUsuarioPorId(avl.idUsuario);
+            
+                    return {
+                        avaliacao: avl,
+                        livro: liv,
+                        usuario: usu
+                    };
+                })
+            );
+
+        }
+        catch(erroBanco){
+            console.warn("Banco indisponível na home:", erroBanco.message)
+        }
+
         res.render("home", {
             livrosEmAlta,
             prateleirasEmAlta,
-            reviewsRecentes: [], // TODO (Fase 3): juntar avaliações + usuários
+            reviewsRecentes // TODO (Fase 3): juntar avaliações + usuários
         });
     } catch (erro) {
         erro.friendlyMessage = "Erro ao carregar a home";
