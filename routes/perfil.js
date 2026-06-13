@@ -1,5 +1,5 @@
 import express from "express";
-import { getDadosUsuario } from "../models/consultas.js";
+import { getDadosUsuario, buscaUsuarioPorNome } from "../models/consultas.js";
 
 const router = express.Router();
 
@@ -10,6 +10,36 @@ router.get("/", (req, res) => {
         return res.redirect("/");
     }
     res.redirect(`/perfil/${req.session.usuario.id}`);
+});
+
+// rota para busca pelo nome do usuário
+router.get("/buscar", async (req, res, next) => {
+    const nomeBuscado = req.query.nome?.trim();
+
+    console.log(nomeBuscado);
+
+    if (!nomeBuscado) {
+        return res.redirect('/perfil'); // renderizar perfil do usuário logado
+    }
+    
+    try{
+        const idUsuario = await buscaUsuarioPorNome(nomeBuscado);
+
+        if(!idUsuario) {
+            req.flash("error", `Nenhum usuário encontrado com o nome "${nomeBuscado}"`);
+
+            return res.render('perfil', {
+                nomeBuscado
+            });
+        }
+
+        // Redireciona para a rota com id
+        res.redirect(`/perfil/${idUsuario}`);
+    }
+    catch(erro){
+        erro.friendlyMessage = "Erro desconhecido ao buscar perfil";
+        next(erro);
+    }
 });
 
 // Perfil público de qualquer usuário, visível por URL.

@@ -142,6 +142,12 @@ export async function getDadosUsuario(idUsuario) {
     };
 }
 
+export async function buscaUsuarioPorNome(nomeBuscado){
+    const db = await getDb();
+    const usuario = await db.collection("usuarios").findOne({ nome: nomeBuscado });
+    return usuario._id;
+}
+
 // --- BUSCA ---------------------------------------------------------------
 
 // Busca livros pela API da OpenLibrary, aplicando filtros opcionais.

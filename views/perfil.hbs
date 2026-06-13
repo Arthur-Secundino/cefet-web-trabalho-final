@@ -25,6 +25,14 @@
         <main>
             {{#if mensagensSucesso.length}}<div class="flash flash-sucesso">{{#each mensagensSucesso}}<p>{{this}}</p>{{/each}}</div>{{/if}}
             {{#if mensagensErro.length}}<div class="flash flash-erro">{{#each mensagensErro}}<p>{{this}}</p>{{/each}}</div>{{/if}}
+
+            <form method="get" action="/perfil/buscar/">
+                <div class="busca-wrap">
+                    <input type="search" name="nome" value="{{nomeBuscado}}" placeholder="Digite o nome de um usuário" data-autocomplete="navegar" required>
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+
             <div id="dados_iniciais_perfil">
                 <div>
                     <h1>{{nome}}</h1>

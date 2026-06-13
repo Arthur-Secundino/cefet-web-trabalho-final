@@ -1,5 +1,36 @@
 /* pagina de perfil */
 
+.busca-wrap {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+input[type="search"] {
+    border-radius: 999px;
+    width: 100%;
+    height: 52px;
+    padding: 0 20px 0 48px;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    color: var(--preto);
+    background: var(--branco);
+    border: 1.5px solid var(--cinza-borda);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin: 14px 0 20px;
+
+    /* icone de lupa */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%231A1A1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><path d='M21 21l-4.3-4.3'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 18px center;
+    transition: border-color 0.2s;
+}
+
+input[type="search"]:focus {
+    border-color: var(--teal-escuro);
+    box-shadow: 0 0 0 3px rgba(0, 194, 194, 0.15);
+}
+
 #dados_iniciais_perfil {
     display: grid;
     grid-template-columns: 1fr auto;
