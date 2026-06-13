@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ShelfLog — Esqueci minha senha</title>
+        <title>ShelfLog — Redefinir senha</title>
         <link rel="stylesheet" href="/styles/estilos_comuns.css">
         <script src="/script/tema.js"></script>
     </head>
@@ -16,14 +16,15 @@
             {{#if mensagensErro.length}}<div class="flash flash-erro">{{#each mensagensErro}}<p>{{this}}</p>{{/each}}</div>{{/if}}
             {{#if mensagensSucesso.length}}<div class="flash flash-sucesso">{{#each mensagensSucesso}}<p>{{this}}</p>{{/each}}</div>{{/if}}
 
-            <form class="cartao-auth" method="post" action="/esqueci-senha">
-                <h1>Esqueci minha senha</h1>
-                <p>Informe o email da sua conta e enviaremos um link para criar uma senha nova.</p>
-                <label>Email
-                    <input type="email" name="email" placeholder="voce@exemplo.com" required>
+            <form class="cartao-auth" method="post" action="/redefinir-senha/{{token}}">
+                <h1>Nova senha</h1>
+                <label>Nova senha
+                    <input type="password" name="senha" minlength="6" placeholder="••••••••" required>
                 </label>
-                <button type="submit">Enviar link de redefinição</button>
-                <a class="link-esqueci" href="/">Voltar para o início</a>
+                <label>Confirmar nova senha
+                    <input type="password" name="confirmar" minlength="6" placeholder="••••••••" required>
+                </label>
+                <button type="submit">Salvar nova senha</button>
             </form>
         </main>
 
