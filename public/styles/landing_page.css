@@ -96,6 +96,7 @@ main > .lista-cards .card {
     .hero h1 { font-size: clamp(1.9rem, 9vw, 2.6rem); }
     .hero-sub { font-size: 1rem; }
     #botao-criar-prateleira { width: 100%; }
-    .botoes-landing-page { width: 100%; }
-    .botoes-landing-page button { flex: 1; }
+    /* empilha os botões do topo (em vez de lado a lado, que estourava) */
+    .botoes-landing-page { width: 100%; flex-direction: column; align-items: stretch; }
+    .botoes-landing-page button { width: 100%; }
 }

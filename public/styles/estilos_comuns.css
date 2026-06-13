@@ -30,6 +30,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 /* header */
@@ -391,9 +392,17 @@ footer .logo { width: 150px; }
     .opcoes-footer { justify-self: start; column-gap: 20px; }
 }
 
-@media (max-width: 560px) {
-    .opcoes-footer { grid-template-columns: 1fr 1fr; }
-    .cabecalho3, .opcao31, .opcao32, .opcao33 { grid-column: 2; }
+@media (max-width: 700px) {
+    /* abandona o posicionamento fixo de grade (que colidia as colunas)
+       e empilha tudo em uma coluna, na ordem natural */
+    .opcoes-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        max-width: 100%;
+    }
+    .opcoes-footer p { grid-column: auto; grid-row: auto; }
+    .cabecalho2, .cabecalho3 { margin-top: 14px !important; }
 }
 
 /* mensagens flash */
