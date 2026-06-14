@@ -69,6 +69,10 @@
     font-weight: 700;
 }
 
+.altera_visualizacao_prateleira::before {
+    content: "";
+}
+
 /* container dos livros */
 #lista-prateleiras > div > div:last-child {
     padding: 20px 28px 28px;

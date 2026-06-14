@@ -59,6 +59,18 @@ export async function insereLivroNaPrateleira(idPrateleira, novoLivro) {
     return resultado.modifiedCount > 0;
 }
 
+export async function atualizaVisualizacaoPrateleira(idPrateleira, ehPublica) {
+    const db = await getDb();
+    const _id = paraObjectId(idPrateleira);
+
+    if(!_id){
+        return false;
+    }
+
+    const resultado = await db.collection("prateleiras").updateOne({ _id }, { $set: { publica: ehPublica } });
+    return resultado.modifiedCount > 0;
+}
+
 // --- LIVROS (via OpenLibrary + avaliações nossas) ------------------------
 
 // Retorna os dados de um livro pelo id da OpenLibrary (ou pelo nome, pegando o 1º).

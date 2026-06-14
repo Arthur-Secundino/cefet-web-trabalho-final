@@ -5,6 +5,7 @@ import {
     getDadosLivro,
     insereLivroNaPrateleira,
     getPrateleiraPorId,
+    atualizaVisualizacaoPrateleira
 } from "../models/consultas.js";
 
 const router = express.Router();
@@ -72,6 +73,29 @@ router.post("/:idPrateleira", async (req, res, next) => {
         res.redirect("/prateleira");
     } catch (erro) {
         erro.friendlyMessage = "Erro ao adicionar livro na prateleira";
+        next(erro);
+    }
+});
+
+// atualiza a visualização da prateleira, alterando entre pública e privada
+router.put("/:idPrateleira", async (req, res, next) => {
+    try{
+        const prateleira = await getPrateleiraPorId(req.params.idPrateleira);
+
+        // Autorização: a prateleira existe e pertence ao usuário logado?
+        if (!prateleira || prateleira.idUsuario?.toString() !== req.session.usuario.id) {
+            req.flash("error", "Você não pode alterar essa prateleira.");
+            return res.redirect("/prateleira");
+        }
+
+        const ehPublica = req.body.publica === "Sim" ? true : false;
+        const atualizado = await atualizaVisualizacaoPrateleira(req.params.idPrateleira, ehPublica);
+
+        req.flash(atualizado ? "success" : "error", atualizado ? "Visualização alterada com sucesso" : "Não foi possível alterar a visualização");
+        res.redirect("/prateleira");
+    }
+    catch(erro){
+        erro.friendlyMessage = "Erro desconhecido ao mudar a visualização da prateleira";
         next(erro);
     }
 });

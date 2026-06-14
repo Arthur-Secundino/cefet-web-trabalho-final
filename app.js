@@ -4,6 +4,7 @@ import hbs from "hbs";
 import http from "http";
 import session from "express-session";
 import flash from "connect-flash";
+import methodOverride from "method-override";
 
 import homeRouter from "./routes/home.js";
 import prateleiraRouter from "./routes/prateleira.js";
@@ -32,8 +33,10 @@ app.set("port", PORTA);
 app.use(express.static("public", { index: false }));
 
 // Parsers de corpo: JSON para chamadas fetch e urlencoded para formulários HTML.
+// Method Override para usar PUT em formulários
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 // Sessão (necessária para o connect-flash e, na Fase 3, para a autenticação).
 app.use(
