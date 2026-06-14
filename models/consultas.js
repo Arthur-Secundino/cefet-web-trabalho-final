@@ -68,7 +68,7 @@ export async function atualizaVisualizacaoPrateleira(idPrateleira, ehPublica) {
     }
 
     const resultado = await db.collection("prateleiras").updateOne({ _id }, { $set: { publica: ehPublica } });
-    return resultado.modifiedCount > 0;
+        return resultado.matchedCount > 0; // sucesso mesmo se o valor já era esse
 }
 
 // --- LIVROS (via OpenLibrary + avaliações nossas) ------------------------
@@ -160,10 +160,17 @@ export async function getDadosUsuario(idUsuario) {
     };
 }
 
-export async function buscaUsuarioPorNome(nomeBuscado){
+// Busca usuários por nome (parcial, ignorando maiúsculas/acentos básicos).
+// Retorna uma LISTA (nunca quebra se não achar nada).
+export async function buscaUsuariosPorNome(termo) {
     const db = await getDb();
-    const usuario = await db.collection("usuarios").findOne({ nome: nomeBuscado });
-    return usuario._id;
+    const seguro = termo.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // escapa regex
+    return db
+        .collection("usuarios")
+        .find({ nome: { $regex: seguro, $options: "i" } })
+        .project({ nome: 1, arroba: 1, avatar: 1 })
+        .limit(20)
+        .toArray();
 }
 
 export async function getUsuarioPorId(idUsuario){

@@ -6,66 +6,65 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
     try {
-        // "Em alta" vem da API do Google Books, não depende do nosso banco.
-        let livrosEmAlta = [];
+        // Prateleiras públicas: base do "Em alta" e do "Prateleiras pra se inspirar".
+        let prateleirasPublicas = [];
         try {
-            livrosEmAlta = (await buscaLivros("best sellers literatura")).slice(0, 6);
-        } catch (erroApi) {
-            console.warn("Google Books indisponível na home:", erroApi.message);
-        }
-
-        // Prateleiras em destaque dependem do banco. Se ele ainda não estiver
-        // configurado, a home continua abrindo (lista vazia) em vez de quebrar.
-        let prateleirasEmAlta = [];
-        try {
-            const prateleiras = await getPrateleiras();
-            prateleirasEmAlta = prateleiras.map((p) => ({
-                imagem: p.livros?.[0]?.capa || "/imgs/terror_classico.png",
-                nome: p.nome,
-                descricao: p.descricao,
-            }));
+            prateleirasPublicas = await getPrateleiras(); // sem id => só as públicas
         } catch (erroBanco) {
             console.warn("Banco indisponível na home:", erroBanco.message);
         }
 
+        // "Em alta": livros reais e distintos que estão nas prateleiras públicas.
+        const vistos = new Set();
+        let livrosEmAlta = [];
+        for (const p of prateleirasPublicas) {
+            for (const liv of p.livros || []) {
+                if (liv.livroId && !vistos.has(liv.livroId)) {
+                    vistos.add(liv.livroId);
+                    livrosEmAlta.push({ livroId: liv.livroId, titulo: liv.titulo, capa: liv.capa });
+                }
+            }
+        }
+        livrosEmAlta = livrosEmAlta.slice(0, 8);
+
+        // Fallback: se ainda não há livros nas prateleiras, busca na OpenLibrary só com capa real.
+        if (livrosEmAlta.length === 0) {
+            try {
+                livrosEmAlta = (await buscaLivros("classic literature"))
+                    .filter((l) => l.capa && !l.capa.endsWith("crime_castigo.png"))
+                    .slice(0, 8);
+            } catch (erroApi) {
+                console.warn("OpenLibrary indisponível na home:", erroApi.message);
+            }
+        }
+
+        // "Prateleiras pra se inspirar": as próprias prateleiras públicas com seus livros (faixa de capas).
+        const prateleirasEmAlta = prateleirasPublicas.slice(0, 3).map((p) => ({
+            id: p._id.toString(),
+            nome: p.nome,
+            descricao: p.descricao,
+            livros: (p.livros || []).slice(0, 8),
+        }));
+
+        // Reviews recentes (avaliações + autor).
         let reviewsRecentes = [];
-        try{
+        try {
             const avaliacoes = await getAvaliacoes();
-            const avaliacoesRecentes = avaliacoes.sort((a, b) => {
-                if(a.criadoEm < b.criadoEm){
-                    return 1;
-                }
-                else if(a.criadoEm === b.criadoEm){
-                    return 0;
-                }
-                else{
-                    return -1;
-                }
-            }).slice(0, 6);
-
+            const recentes = avaliacoes
+                .sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))
+                .slice(0, 6);
             reviewsRecentes = await Promise.all(
-                avaliacoesRecentes.map(async (avl) => {
-                    const liv = await buscaLivroPorId(avl.livroId);
-                    const usu = await getUsuarioPorId(avl.idUsuario);
-            
-                    return {
-                        avaliacao: avl,
-                        livro: liv,
-                        usuario: usu
-                    };
-                })
+                recentes.map(async (avl) => ({
+                    avaliacao: avl,
+                    livro: await buscaLivroPorId(avl.livroId),
+                    usuario: await getUsuarioPorId(avl.idUsuario),
+                }))
             );
-
-        }
-        catch(erroBanco){
-            console.warn("Banco indisponível na home:", erroBanco.message)
+        } catch (erroBanco) {
+            console.warn("Banco indisponível na home (reviews):", erroBanco.message);
         }
 
-        res.render("home", {
-            livrosEmAlta,
-            prateleirasEmAlta,
-            reviewsRecentes // TODO (Fase 3): juntar avaliações + usuários
-        });
+        res.render("home", { livrosEmAlta, prateleirasEmAlta, reviewsRecentes });
     } catch (erro) {
         erro.friendlyMessage = "Erro ao carregar a home";
         next(erro);

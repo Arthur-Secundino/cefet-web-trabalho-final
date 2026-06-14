@@ -57,3 +57,37 @@
     .review .card-interno > p:last-child { font-size: 1.2rem; }
     .review > p:last-child { font-size: 0.95rem; }
 }
+
+
+/* "Em alta": cards viram links */
+#livros_em_alta a.card { text-decoration: none; color: inherit; }
+
+/* "Prateleiras pra se inspirar": faixa de capas (igual ao espírito da aba Prateleiras) */
+#prateleiras_em_alta { display: flex; flex-direction: column; gap: 20px; }
+
+.prateleira-inspira {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 20px 24px;
+}
+.prateleira-inspira-cabecalho h3 { margin-bottom: 2px; }
+.prateleira-inspira-cabecalho p { font-style: italic; color: var(--cinza-escuro); margin-bottom: 14px; }
+
+.faixa-livros {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+.livro-mini { flex: 0 0 auto; width: 92px; }
+.livro-mini img {
+    width: 92px;
+    height: 138px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+.livro-mini:hover img { transform: translateY(-3px); }

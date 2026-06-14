@@ -1,6 +1,5 @@
 import express from "express";
-import { getDadosUsuario, buscaUsuarioPorNome } from "../models/consultas.js";
-
+import { getDadosUsuario, buscaUsuariosPorNome } from "../models/consultas.js";
 const router = express.Router();
 
 // "/perfil" sem id: leva ao perfil do próprio usuário logado.
@@ -12,32 +11,21 @@ router.get("/", (req, res) => {
     res.redirect(`/perfil/${req.session.usuario.id}`);
 });
 
-// rota para busca pelo nome do usuário
+// Busca de perfis por nome: mostra uma lista de usuários encontrados.
 router.get("/buscar", async (req, res, next) => {
     const nomeBuscado = req.query.nome?.trim();
+    if (!nomeBuscado) return res.redirect("/perfil");
 
-    console.log(nomeBuscado);
-
-    if (!nomeBuscado) {
-        return res.redirect('/perfil'); // renderizar perfil do usuário logado
-    }
-    
-    try{
-        const idUsuario = await buscaUsuarioPorNome(nomeBuscado);
-
-        if(!idUsuario) {
-            req.flash("error", `Nenhum usuário encontrado com o nome "${nomeBuscado}"`);
-
-            return res.render('perfil', {
-                nomeBuscado
-            });
-        }
-
-        // Redireciona para a rota com id
-        res.redirect(`/perfil/${idUsuario}`);
-    }
-    catch(erro){
-        erro.friendlyMessage = "Erro desconhecido ao buscar perfil";
+    try {
+        const usuarios = (await buscaUsuariosPorNome(nomeBuscado)).map((u) => ({
+            id: u._id.toString(),
+            nome: u.nome,
+            arroba: u.arroba,
+            avatar: u.avatar || "/imgs/avatar.png",
+        }));
+        res.render("perfil_busca", { nomeBuscado, usuarios });
+    } catch (erro) {
+        erro.friendlyMessage = "Erro ao buscar perfis";
         next(erro);
     }
 });

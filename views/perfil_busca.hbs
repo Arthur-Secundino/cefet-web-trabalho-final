@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShelfLog — Buscar perfis</title>
+        <link rel="stylesheet" href="/styles/estilos_comuns.css">
+        <link rel="stylesheet" href="/styles/perfil.css">
+        <script src="/script/tema.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="/home"><img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/prateleira">Prateleiras</a></li>
+                    <li><a href="/busca">Buscar</a></li>
+                    <li><a href="/perfil">Perfil público</a></li>
+                    {{#if usuario}}<li class="nav-usuario">Olá, {{usuario.nome}}!</li>{{/if}}
+                    <li><a href="/logout" class="botao_sair">Sair</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form method="get" action="/perfil/buscar">
+                <div class="busca-wrap">
+                    <input type="search" name="nome" value="{{nomeBuscado}}" placeholder="Digite o nome de um usuário" required>
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+
+            <h1>Resultados para "{{nomeBuscado}}"</h1>
+            <div class="lista-cards">
+                {{#each usuarios}}
+                    <a class="card resultado-usuario" href="/perfil/{{id}}">
+                        <img src="{{avatar}}" alt="Avatar de {{nome}}" class="avatar-usuario">
+                        <p>{{nome}}</p>
+                        <p>{{arroba}}</p>
+                    </a>
+                {{else}}
+                    <p>Nenhum usuário encontrado com esse nome.</p>
+                {{/each}}
+            </div>
+        </main>
+
+        <footer>
+            <img src="/imgs/logo.png" alt="Logo do ShelfLog" class="logo">
+            <div class="opcoes-footer">
+                <p class="cabecalho1">ShelfLog</p>
+                <p class="opcao11"><a href="/sobre#sobre-nos">Sobre nós</a></p>
+                <p class="opcao12"><a href="/sobre#como-funciona">Como funciona</a></p>
+                <p class="opcao13"><a href="/sobre#contato">Contato</a></p>
+
+                <p class="cabecalho2">Explorar</p>
+                <p class="opcao21"><a href="/home">Prateleiras populares</a></p>
+                <p class="opcao22"><a href="/home">Reviews recentes</a></p>
+                <p class="opcao23"><a href="/busca">Buscar livros</a></p>
+
+                <p class="cabecalho3">Conta</p>
+                <p class="opcao31"><a href="/">Criar conta</a></p>
+                <p class="opcao32"><a href="/">Entrar</a></p>
+                <p class="opcao33"><a href="/perfil">Meu perfil</a></p>
+            </div>
+        </footer>
+    </body>
+</html>
