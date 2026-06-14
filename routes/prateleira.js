@@ -17,9 +17,21 @@ router.get("/", async (req, res, next) => {
             ...p,
             id: p._id.toString(),
         }));
-        res.render("prateleira", { prateleiras: dadosPrateleiras });
+        res.render("prateleira", { prateleiras: dadosPrateleiras, naoMostrar: false });
     } catch (erro) {
         erro.friendlyMessage = "Erro ao buscar prateleiras";
+        next(erro);
+    }
+});
+
+router.get("/:idUsuario", async (req, res, next) => {
+    try{
+        const dadosPrateleiras = (await getPrateleiras(req.params.idUsuario)).filter(prateleira => prateleira.publica);
+        let naoMostrar = req.params.idUsuario === req.session.usuario.id ? false : true;
+        res.render("prateleira", { prateleiras: dadosPrateleiras, naoMostrar: naoMostrar });
+    }
+    catch(erro){
+        erro.friendlyMessage = "Erro desconhecido ao exibir prateleiras do usuario";
         next(erro);
     }
 });

@@ -16,8 +16,6 @@ router.get("/", (req, res) => {
 router.get("/buscar", async (req, res, next) => {
     const nomeBuscado = req.query.nome?.trim();
 
-    console.log(nomeBuscado);
-
     if (!nomeBuscado) {
         return res.redirect('/perfil'); // renderizar perfil do usuário logado
     }
@@ -50,7 +48,8 @@ router.get("/:idUsuario", async (req, res, next) => {
             req.flash("error", "Usuário não encontrado.");
             return res.redirect("/home");
         }
-        res.render("perfil", dadosUsuario);
+        const idUsuario = req.params.idUsuario
+        res.render("perfil", { dadosUsuario: dadosUsuario, idUsuario: idUsuario });
     } catch (erro) {
         erro.friendlyMessage = "Erro desconhecido ao exibir perfil";
         next(erro);

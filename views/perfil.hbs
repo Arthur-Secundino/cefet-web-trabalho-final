@@ -35,27 +35,29 @@
 
             <div id="dados_iniciais_perfil">
                 <div>
-                    <h1>{{nome}}</h1>
-                    <p>Membro desde {{anoDeIngresso}}</p>
-                    <p>{{textoExplicativo}}</p>
+                    <h1>{{dadosUsuario.nome}}</h1>
+                    <p>Membro desde {{dadosUsuario.anoDeIngresso}}</p>
+                    <p>{{dadosUsuario.textoExplicativo}}</p>
                     </div>
-                    <img src="{{avatar}}" alt="Avatar do usuário {{arroba}}">
+                    <img src="{{dadosUsuario.avatar}}" alt="Avatar do usuário {{dadosUsuario.arroba}}">
             </div>
 
             <h2>Estatísticas literárias</h2>
             <div id="estatisticas_usuario">
-                <img src="{{grafico}}" alt="Gráfico de pizza dos gêneros mais lidos pelo usuário {{arroba}}">
+                <img src="{{dadosUsuario.grafico}}" alt="Gráfico de pizza dos gêneros mais lidos pelo usuário {{dadosUsuario.arroba}}">
                 <div>
-                    <p>Livros lidos: {{quantidadeLivrosLidos}}</p>
-                    <p>Nota média: {{notaMedia}}</p>
+                    <p>Livros lidos: {{dadosUsuario.quantidadeLivrosLidos}}</p>
+                    <p>Nota média: {{dadosUsuario.notaMedia}}</p>
 
-                    <p>Livro mais recente lido: {{livroMaisRecenteLido}}</p>
-                    <p>Livro mais recente avaliado: {{livroMaisRecenteAvaliado}}</p>
+                    <p>Livro mais recente lido: {{dadosUsuario.livroMaisRecenteLido}}</p>
+                    <p>Livro mais recente avaliado: {{dadosUsuario.livroMaisRecenteAvaliado}}</p>
 
                     <p>Prateleiras públicas:</p>
                     <ul>
-                        {{#each prateleirasPublicas}}
-                            <li>{{nomePrateleira}}</li>
+                        {{#each dadosUsuario.prateleirasPublicas}}
+                            <a href="/prateleira/{{../idUsuario}}">
+                                <li>{{nomePrateleira}}</li>
+                            </a>
                         {{/each}}
                     </ul>
                 </div>

@@ -46,28 +46,31 @@
                                 <p>{{descricao}}</p>
                             </div>
 
-                            <form method="post" action="/prateleira/{{id}}?_method=PUT">
-                                <p>Prateleira pública?</p>
-                                {{#if publica}}
-                                    <label for="publica">Sim <input type="radio" name="publica" value="Sim" checked> </label>
-                                    <label for="publica">Não <input type="radio" name="publica" value="Não"> </label>
-                                {{else}}
-                                    <label for="publica">Sim <input type="radio" name="publica" value="Sim"> </label>
-                                    <label for="publica">Não <input type="radio" name="publica" value="Não" checked> </label>
-                                {{/if}}
-                                <button class="altera_visualizacao_prateleira" type="submit">Salvar</button>
-                            </form>
-                            
-                            
-                            <form method="post" action="/prateleira/{{id}}" class="form-add-livro">
-                                <input type="text" name="titulo" placeholder="Título do livro" data-autocomplete="preencher" required>
-                                <select name="status">
-                                    <option>Quero ler</option>
-                                    <option>Lendo</option>
-                                    <option>Lido</option>
-                                </select>
-                                <button type="submit">Adicionar livro</button>
-                            </form>
+                            {{#if ../naoMostrar}}
+                                <p>Sem autorização para modificar prateleira</p>
+                            {{else}}
+                                <form method="post" action="/prateleira/{{id}}?_method=PUT">
+                                    <p>Prateleira pública?</p>
+                                    {{#if publica}}
+                                        <label for="publica">Sim <input type="radio" name="publica" value="Sim" checked> </label>
+                                        <label for="publica">Não <input type="radio" name="publica" value="Não"> </label>
+                                    {{else}}
+                                        <label for="publica">Sim <input type="radio" name="publica" value="Sim"> </label>
+                                        <label for="publica">Não <input type="radio" name="publica" value="Não" checked> </label>
+                                    {{/if}}
+                                    <button class="altera_visualizacao_prateleira" type="submit">Salvar</button>
+                                </form>
+
+                                <form method="post" action="/prateleira/{{id}}" class="form-add-livro">
+                                    <input type="text" name="titulo" placeholder="Título do livro" data-autocomplete="preencher" required>
+                                    <select name="status">
+                                        <option>Quero ler</option>
+                                        <option>Lendo</option>
+                                        <option>Lido</option>
+                                    </select>
+                                    <button type="submit">Adicionar livro</button>
+                                </form>
+                            {{/if}}
                         </div>
                         <div>
                             <div class="lista-cards">
