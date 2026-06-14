@@ -106,17 +106,30 @@ router.post("/esqueci-senha", async (req, res, next) => {
 
         if (usuario) {
             const link = `${req.protocol}://${req.get("host")}/redefinir-senha/${token}`;
-            const enviado = await enviaEmail(
-                req.body.email,
-                "Redefinição de senha · ShelfLog",
-                `<p>Para redefinir sua senha, acesse: <a href="${link}">${link}</a></p><p>O link vale por 1 hora.</p>`
+
+            // Tenta enviar por email, mas SEM quebrar o fluxo se o SMTP falhar.
+            let enviado = false;
+            try {
+                enviado = await enviaEmail(
+                    req.body.email,
+                    "Redefinição de senha · ShelfLog",
+                    `<p>Para redefinir sua senha, acesse: <a href="${link}">${link}</a></p><p>O link vale por 1 hora.</p>`
+                );
+            } catch (e) {
+                console.warn("Falha no envio do email de redefinição:", e.message);
+            }
+
+            // Mostra o link na tela SEMPRE, garantindo o fluxo mesmo sem email entregue.
+            req.flash(
+                "success",
+                enviado
+                    ? `Enviamos um email com o link. Se não chegar, use este: ${link}`
+                    : `Link de redefinição (vale por 1 hora): ${link}`
             );
-            // Sem SMTP configurado (dev), mostra o link na tela para testar o fluxo.
-            if (!enviado) req.flash("success", `Sem SMTP configurado. Link de teste: ${link}`);
+        } else {
+            req.flash("success", "Se este email estiver cadastrado, geramos um link de redefinição.");
         }
 
-        // Mesma resposta com ou sem conta: não revela quais emails existem.
-        req.flash("success", "Se este email estiver cadastrado, enviamos um link de redefinição.");
         res.redirect("/esqueci-senha");
     } catch (erro) {
         erro.friendlyMessage = "Erro ao iniciar a redefinição de senha";

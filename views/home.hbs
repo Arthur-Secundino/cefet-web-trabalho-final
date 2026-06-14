@@ -29,23 +29,35 @@
             <p>Os livros que estão movimentando os leitores neste momento.</p>
             <div id="livros_em_alta" class="lista-cards">
                 {{#each livrosEmAlta}}
-                    <article class="card limita-largura">
+                    <a class="card limita-largura" href="/livro/{{livroId}}">
                         <img src="{{capa}}" alt="Capa do livro {{titulo}}" class="centraliza-imagem">
                         <p>{{titulo}}</p>
-                        <p>{{descricao}}</p>
-                    </article>
+                    </a>
+                {{else}}
+                    <p>Ainda não há livros em alta. Adicione livros às suas prateleiras e torne-as públicas!</p>
                 {{/each}}
             </div>
-            
 
             <h2>Prateleiras pra se inspirar</h2>
-            <div id="prateleiras_em_alta" class="lista-cards">
+            <div id="prateleiras_em_alta">
                 {{#each prateleirasEmAlta}}
-                    <article class="card limita-largura">
-                        <img src="{{imagem}}" alt="Imagem representativa da prateleira {{nome}}">
-                        <p>{{nome}}</p>
-                        <p>{{descricao}}</p>
-                    </article>
+                    <div class="prateleira-inspira">
+                        <div class="prateleira-inspira-cabecalho">
+                            <h3>{{nome}}</h3>
+                            <p>{{descricao}}</p>
+                        </div>
+                        <div class="faixa-livros">
+                            {{#each livros}}
+                                <a class="livro-mini" href="/livro/{{livroId}}" title="{{titulo}}">
+                                    <img src="{{capa}}" alt="Capa de {{titulo}}">
+                                </a>
+                            {{else}}
+                                <p>Prateleira ainda sem livros.</p>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{else}}
+                    <p>Ainda não há prateleiras públicas. Torne uma das suas pública para aparecer aqui!</p>
                 {{/each}}
             </div>
             

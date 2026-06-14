@@ -140,3 +140,8 @@ input[type="search"]:focus {
     }
     #estatisticas_usuario > img { max-width: 200px; margin: 0 auto; }
 }
+
+/* cards de resultado da busca de perfis */
+.resultado-usuario { text-decoration: none; color: inherit; align-items: center; text-align: center; }
+.resultado-usuario .avatar-usuario { width: 64px; height: 64px; max-width: 64px; margin-bottom: 6px; }
+.resultado-usuario p:last-child { color: var(--cinza); font-size: 0.85rem; }
